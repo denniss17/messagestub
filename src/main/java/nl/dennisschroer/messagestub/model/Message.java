@@ -24,5 +24,5 @@ public class Message {
     @CreatedDate
     private Date timestamp;
 
-    private byte[] data;
+    private String data;
 }
