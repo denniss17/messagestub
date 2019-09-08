@@ -1,21 +1,19 @@
 package nl.dennisschroer.messagestub.matcher;
 
-import org.springframework.stereotype.Component;
-
 import javax.servlet.http.HttpServletRequest;
 
-public class PathRegexTypeMatcher implements TypeMatcher {
+public class PathRegexRequestMatcher implements RequestMatcher {
 
     private final String regex;
     private final String type;
 
-    public PathRegexTypeMatcher(String regex, String type) {
+    public PathRegexRequestMatcher(String regex, String type) {
         this.regex = regex;
         this.type = type;
     }
 
     @Override
-    public String match(String path, String content, HttpServletRequest request) {
+    public String match(String path, String body, HttpServletRequest request) {
         return path.matches(regex) ? type : null;
     }
 }

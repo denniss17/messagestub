@@ -4,7 +4,7 @@ import org.springframework.lang.Nullable;
 
 import javax.servlet.http.HttpServletRequest;
 
-public interface TypeMatcher {
+public interface RequestMatcher {
     @Nullable
-    String match(String path, String content, HttpServletRequest request);
+    String match(String path, String body, HttpServletRequest request);
 }

@@ -1,6 +1,7 @@
 package nl.dennisschroer.messagestub.model;
 
 import lombok.Data;
+import nl.dennisschroer.messagestub.matcher.RequestMatcher;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -23,7 +24,7 @@ public class Message {
     private UUID id;
 
     /**
-     * Detected type of this message. Types are detected using {@link nl.dennisschroer.messagestub.matcher.TypeMatcher}s.
+     * Detected type of this message. Types are detected using {@link RequestMatcher}s.
      */
     private String type;
 
@@ -33,12 +34,14 @@ public class Message {
     private String input;
 
     /**
-     * Path of
+     * Path of the request.
      */
     private String path;
+
+    private String method;
 
     @CreatedDate
     private Date timestamp;
 
-    private String data;
+    private String body;
 }
