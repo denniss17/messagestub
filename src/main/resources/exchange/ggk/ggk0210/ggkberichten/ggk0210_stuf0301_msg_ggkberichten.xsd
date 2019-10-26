@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:StUF="http://www.egem.nl/StUF/StUF0301" targetNamespace="http://www.egem.nl/StUF/StUF0301" elementFormDefault="qualified" attributeFormDefault="unqualified" version="021001">
+	<include schemaLocation="../../0301/stuf0301.xsd"/>
+	<annotation>
+		<documentation>
+ 			  Wijzigingen t.b.v. patch 4 (03-01-2017) vergeleken met versie ggk0210_msg_ggkberichten.xsd v021000:
+			   - Naam is gewijzigd.
+			   - Namespaceidentifier is gewijzigd.
+			   - Appinfo toegevoegd.
+			   - Versienr gewijzigd.
+			   - pattern-restrictie toegevoegd op bestandsnaam. 
+			   - pattern-restrictie toegevoegd op referentienummer en crossRefnummer
+			   - parameters.referentienummerBericht en parameters.crossRefnummerBericht verwijderd
+			   - choice voor xml-bericht of tekst-bericht
+			   - definitie simpletype bestandsnaam opgenomen
+        </documentation>
+		<appinfo>
+			<StUF:onderdeel>http://www.stufstandaarden.nl/koppelvlak/ggk0210</StUF:onderdeel>
+			<StUF:patch>4</StUF:patch>
+			<StUF:patchdatum>20170103</StUF:patchdatum>
+			<StUF:schemaversie>1</StUF:schemaversie>
+		</appinfo>
+	</annotation>
+	<complexType name="StuurgegevensDi01-envelopHeenbericht">
+		<complexContent>
+			<restriction base="StUF:StuurgegevensDi01">
+				<sequence>
+					<element name="berichtcode" type="StUF:BerichtcodeDi01"/>
+					<element name="zender" type="StUF:Systeem_ggkberichten"/>
+					<element name="ontvanger" type="StUF:Systeem_ggkberichten"/>
+					<element name="referentienummer">
+						<simpleType>
+							<restriction base="StUF:Refnummer">
+								<pattern value="[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}"/>
+								<!-- Version 4 UUID pattern -->
+							</restriction>
+						</simpleType>
+					</element>
+					<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+					<element name="functie" type="StUF:Functie"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="StuurgegevensDu01-envelopRetourbericht">
+		<complexContent>
+			<restriction base="StUF:StuurgegevensDu01">
+				<sequence>
+					<element name="berichtcode" type="StUF:BerichtcodeDu01"/>
+					<element name="zender" type="StUF:Systeem_ggkberichten"/>
+					<element name="ontvanger" type="StUF:Systeem_ggkberichten"/>
+					<element name="referentienummer">
+						<simpleType>
+							<restriction base="StUF:Refnummer">
+								<pattern value="[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}"/>
+								<!-- Version 4 UUID pattern -->
+							</restriction>
+						</simpleType>
+					</element>
+					<element name="tijdstipBericht" type="StUF:Tijdstip"/>
+					<element name="crossRefnummer">
+						<simpleType>
+							<restriction base="StUF:Refnummer">
+								<pattern value="[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}"/>
+								<!-- Version 4 UUID pattern -->
+							</restriction>
+						</simpleType>
+					</element>
+					<element name="functie" type="StUF:Functie"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="Systeem_ggkberichten">
+		<complexContent>
+			<restriction base="StUF:Systeem">
+				<sequence>
+					<element name="organisatie" type="StUF:Organisatie"/>
+					<element name="applicatie" type="StUF:Applicatie"/>
+					<element name="administratie" type="StUF:Administratie" minOccurs="0"/>
+					<element name="gebruiker" type="StUF:Gebruiker" minOccurs="0"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<simpleType name="BinaireInhoud-basis_ggkbericht_xml">
+		<restriction base="xs:base64Binary"/>
+	</simpleType>
+	<complexType name="BinaireInhoud-basis_ggkbericht_tekst">
+		<simpleContent>
+			<extension base="xs:base64Binary">
+				<attribute name="bestandsnaam" use="required">
+					<simpleType>
+						<restriction base="StUF:bestandsnaampattern"/>
+					</simpleType>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<simpleType name="bestandsnaampattern">
+		<restriction base="string">
+			<maxLength value="255"/>
+			<minLength value="4"/>
+			<pattern value="[A-Za-z0-9\-\._]+"/>
+		</restriction>
+	</simpleType>
+</schema>

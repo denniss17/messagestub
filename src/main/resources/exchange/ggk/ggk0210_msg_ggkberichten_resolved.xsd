@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:StUF="http://www.egem.nl/StUF/StUF0301"
+        xmlns:GGK="http://www.stufstandaarden.nl/koppelvlak/ggk0210"
+        targetNamespace="http://www.stufstandaarden.nl/koppelvlak/ggk0210"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+        version="021001">
+   <import namespace="http://www.egem.nl/StUF/StUF0301"
+           schemaLocation="ggk0210_stuf0301_msg_ggkberichten_resolved.xsd"/>
+   <annotation>
+		    <documentation>
+ 			  Wijzigingen t.b.v. patch 4 (03-01-2017) vergeleken met versie ggk0210_msg_ggkberichten.xsd v021000:
+			   - Naam is gewijzigd.
+			   - Namespaceidentifier is gewijzigd.
+			   - Appinfo toegevoegd.
+			   - Versienr gewijzigd.
+			   - pattern-restrictie toegevoegd op bestandsnaam. 
+			   - parameters.referentienummerBericht en parameters.crossRefnummerBericht verwijderd
+			   - choice voor xml-bericht of tekst-bericht
+			   - directe type definitie voor parameters
+        </documentation>
+		    <appinfo>
+			      <StUF:onderdeel>http://www.stufstandaarden.nl/koppelvlak/ggk0210</StUF:onderdeel>
+			      <StUF:patch>4</StUF:patch>
+			      <StUF:patchdatum>20170103</StUF:patchdatum>
+			      <StUF:schemaversie>1</StUF:schemaversie>
+		    </appinfo>
+	  </annotation>
+   <element name="envelopHeenbericht-ggk_Di01">
+		    <complexType>
+			      <sequence>
+				        <element name="stuurgegevens" type="StUF:StuurgegevensDi01-envelopHeenbericht"/>
+				        <element name="parameters" type="GGK:Parameters_ggkberichten"/>
+			      </sequence>
+		    </complexType>
+	  </element>
+   <element name="envelopRetourbericht-ggk_Du01">
+		    <complexType>
+			      <sequence>
+				        <element name="stuurgegevens" type="StUF:StuurgegevensDu01-envelopRetourbericht"/>
+				        <element name="parameters" type="GGK:Parameters_ggkberichten"/>
+			      </sequence>
+		    </complexType>
+	  </element>
+   <complexType name="Parameters_ggkberichten">
+		    <sequence>
+			      <element name="applicatieVersie" type="StUF:Versienr"/>
+			      <element name="applicatieSubversie" type="StUF:Versienr"/>
+			      <element name="functieVersie" type="StUF:Versienr"/>
+			      <element name="functieSubversie" type="StUF:Versienr"/>
+			      <element name="bericht" type="GGK:BinaireInhoud-basis_ggkberichten"/>
+		    </sequence>
+	  </complexType>
+   <complexType name="BinaireInhoud-basis_ggkberichten">
+		    <choice>
+			      <element name="tekstBestand" type="StUF:BinaireInhoud-basis_ggkbericht_tekst"/>
+			      <element name="xmlBestand" type="StUF:BinaireInhoud-basis_ggkbericht_xml"/>
+		    </choice>
+	  </complexType>
+</schema>

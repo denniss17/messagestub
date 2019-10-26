@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GGK:envelopHeenbericht-ggk_Di01 xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:GGK="http://www.stufstandaarden.nl/koppelvlak/ggk0210">
+	<GGK:stuurgegevens>
+		<StUF:berichtcode>Di01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie>0548</StUF:organisatie>
+			<StUF:applicatie>Wmo Applicatie</StUF:applicatie>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>CBS</StUF:organisatie>
+			<StUF:applicatie>GGk</StUF:applicatie>
+		</StUF:ontvanger>
+		<StUF:referentienummer>9c0f7b90-5c69-41e5-a837-0800200c9a66</StUF:referentienummer>
+		<StUF:tijdstipBericht>20160421132514</StUF:tijdstipBericht>
+		<StUF:functie>Dummy</StUF:functie>
+	</GGK:stuurgegevens>
+	<GGK:parameters>
+		<GGK:applicatieVersie>0004</GGK:applicatieVersie>
+		<GGK:applicatieSubversie>0003</GGK:applicatieSubversie>
+		<GGK:functieVersie>0002</GGK:functieVersie>
+		<GGK:functieSubversie>0002</GGK:functieSubversie>
+		<GGK:bericht>
+			<GGK:tekstBestand bestandsnaam="AanleveringQ1.csv">SGllciBzdGFhdCBlZW4gZHVtbXktdGVrc3RiZXJpY2h0Lg==</GGK:tekstBestand>
+		</GGK:bericht>
+	</GGK:parameters>
+</GGK:envelopHeenbericht-ggk_Di01>

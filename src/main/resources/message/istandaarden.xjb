@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings version="2.1" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <jxb:bindings schemaLocation="./wmo/basisschema.xsd" node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.wmo.core" />
+        </jxb:schemaBindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./wmo/WMO301.xsd" node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.wmo.wmo301" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="WMO301Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./wmo/WMO302.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.wmo.wmo302" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="WMO302Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./wmo/WMO303.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.wmo.wmo303" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="WMO303Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./wmo/WMO305.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.wmo.wmo305" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="WMO305Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./wmo/WMO306.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.wmo.wmo306" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="WMO306Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./wmo/WMO307.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.wmo.wmo307" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="WMO307Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./wmo/WMO308.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.wmo.wmo308" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="WMO308Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./wmo/WMO315.xsd" node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.wmo.wmo315" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="WMO315Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./wmo/WMO316.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.wmo.wmo316" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="WMO316Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./jw/basisschema.xsd" node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.ijw.core" />
+        </jxb:schemaBindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./jw/JW301.xsd" node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.ijw.ijw301" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="IJW301Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./jw/JW302.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.ijw.ijw302" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="IJW302Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./jw/JW303.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.ijw.ijw303" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="IJW303Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./jw/JW305.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.ijw.ijw305" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="IJW305Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./jw/JW306.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.ijw.ijw306" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="IJW306Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./jw/JW307.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.ijw.ijw307" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="IJW307Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./jw/JW308.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.ijw.ijw308" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="IJW308Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./jw/JW315.xsd" node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.ijw.ijw315" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="IJW315Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <jxb:bindings schemaLocation="./jw/JW316.xsd">
+        <jxb:schemaBindings>
+            <jxb:package name="nl.istandaarden.generated.ijw.ijw316" />
+        </jxb:schemaBindings>
+        <jxb:bindings node="//xs:complexType[@name='Root']">
+            <jxb:class name="IJW316Bericht" />
+        </jxb:bindings>
+    </jxb:bindings>
+
+</jxb:bindings>

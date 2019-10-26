@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<StUF:Fo01Bericht xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
+    <StUF:stuurgegevens>
+        <StUF:berichtcode>Fo01</StUF:berichtcode>
+        <StUF:zender>
+            <StUF:organisatie>IB</StUF:organisatie>
+            <StUF:applicatie>GGK</StUF:applicatie>
+        </StUF:zender>
+        <StUF:ontvanger>
+            <StUF:organisatie>54540051</StUF:organisatie>
+            <StUF:applicatie>JW Applicatie</StUF:applicatie>
+            <StUF:administratie>test</StUF:administratie>
+            <StUF:gebruiker>gebruiker1</StUF:gebruiker>
+        </StUF:ontvanger>
+        <StUF:referentienummer>78002f23-5bc5-4e3e-96ad-1d209d32a5d5</StUF:referentienummer>
+        <StUF:tijdstipBericht>20160421144534</StUF:tijdstipBericht>
+        <StUF:crossRefnummer>9c0f7b90-5c69-11e5-a837-0800200c9a66</StUF:crossRefnummer>
+    </StUF:stuurgegevens>
+    <StUF:body>
+        <StUF:code>IB210</StUF:code>
+        <StUF:plek>client</StUF:plek>
+        <StUF:omschrijving>Ontvangende organisatie onbekend. Organisatie 99999</StUF:omschrijving>
+        <StUF:details>JW315-00010004</StUF:details>
+        <StUF:detailsXML><root></root></StUF:detailsXML>
+    </StUF:body>
+</StUF:Fo01Bericht>

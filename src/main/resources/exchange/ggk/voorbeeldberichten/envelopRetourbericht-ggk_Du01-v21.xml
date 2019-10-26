@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GGK:envelopRetourbericht-ggk_Du01 xmlns:StUF="http://www.egem.nl/StUF/StUF0301" xmlns:GGK="http://www.stufstandaarden.nl/koppelvlak/ggk0210">
+	<GGK:stuurgegevens>
+		<StUF:berichtcode>Du01</StUF:berichtcode>
+		<StUF:zender>
+			<StUF:organisatie>01023456</StUF:organisatie>
+			<StUF:applicatie>Applicatie leverancier</StUF:applicatie>
+		</StUF:zender>
+		<StUF:ontvanger>
+			<StUF:organisatie>0484</StUF:organisatie>
+			<StUF:applicatie>GGk</StUF:applicatie>
+		</StUF:ontvanger>
+		<StUF:referentienummer>b6e9f182-bc44-4f27-9863-9a5ccc1e1cf0</StUF:referentienummer>
+		<StUF:tijdstipBericht>20160422142804</StUF:tijdstipBericht>
+		<StUF:crossRefnummer>9c0f7b90-5c69-41e5-a837-0800200c9a66</StUF:crossRefnummer>
+		<StUF:functie>WMO302</StUF:functie>
+	</GGK:stuurgegevens>
+	<GGK:parameters>
+		<GGK:applicatieVersie>0004</GGK:applicatieVersie>
+		<GGK:applicatieSubversie>0003</GGK:applicatieSubversie>
+		<GGK:functieVersie>0002</GGK:functieVersie>
+		<GGK:functieSubversie>0002</GGK:functieSubversie>
+		<GGK:bericht>
+			<GGK:xmlBestand>SGllciBzdGFhdCBlZW4gaVdtby9pSnctcmV0b3VyYmVyaWNodC4=</GGK:xmlBestand>
+		</GGK:bericht>
+	</GGK:parameters>
+</GGK:envelopRetourbericht-ggk_Du01>

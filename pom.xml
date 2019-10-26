@@ -1,65 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.8.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>nl.dennisschroer</groupId>
-	<artifactId>messagestub</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>messagestub</name>
-	<description>Stub for testing message based communications</description>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.0.RELEASE</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>nl.dennisschroer</groupId>
+    <artifactId>messagestub</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>messagestub</name>
+    <description>Stub for testing message based communications</description>
 
-	<properties>
-		<java.version>1.8</java.version>
+    <properties>
+        <java.version>1.8</java.version>
 
-		<lombok.version>1.18.8</lombok.version>
-	</properties>
+        <lombok.version>1.18.8</lombok.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web-services</artifactId>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web-services</artifactId>
+        </dependency>
 
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.199</version>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>${lombok.version}</version>
-			<scope>provided</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <executions>
+                    <!-- Message: WMO and JW -->
+                    <execution>
+                        <id>message-wmo-jw</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/message/wmo/basisschema.xsd</source>
+                                <source>src/main/resources/message/wmo/WMO301.xsd</source>
+                                <source>src/main/resources/message/wmo/WMO302.xsd</source>
+                                <source>src/main/resources/message/wmo/WMO303.xsd</source>
+                                <source>src/main/resources/message/wmo/WMO305.xsd</source>
+                                <source>src/main/resources/message/wmo/WMO306.xsd</source>
+                                <source>src/main/resources/message/wmo/WMO307.xsd</source>
+                                <source>src/main/resources/message/wmo/WMO308.xsd</source>
+                                <source>src/main/resources/message/wmo/WMO315.xsd</source>
+                                <source>src/main/resources/message/wmo/WMO316.xsd</source>
+                                <source>src/main/resources/message/jw/basisschema.xsd</source>
+                                <source>src/main/resources/message/jw/JW301.xsd</source>
+                                <source>src/main/resources/message/jw/JW302.xsd</source>
+                                <source>src/main/resources/message/jw/JW303.xsd</source>
+                                <source>src/main/resources/message/jw/JW305.xsd</source>
+                                <source>src/main/resources/message/jw/JW306.xsd</source>
+                                <source>src/main/resources/message/jw/JW307.xsd</source>
+                                <source>src/main/resources/message/jw/JW308.xsd</source>
+                                <source>src/main/resources/message/jw/JW315.xsd</source>
+                                <source>src/main/resources/message/jw/JW316.xsd</source>
+                            </sources>
+                            <xjbSources>
+                                <xjbSource>src/main/resources/message/istandaarden.xjb</xjbSource>
+                            </xjbSources>
+                        </configuration>
+                    </execution>
 
+                    <!-- Exchange: GGK -->
+                    <execution>
+                        <id>exchange-ggk</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/exchange/ggk/ggk0210/ggkberichten/ggk0210_OntvangAsynchroon_ggkberichten.wsdl</source>
+                            </sources>
+                            <sourceType>wsdl</sourceType>
+<!--                            <sources>-->
+<!--                                <source>src/main/resources/exchange/ggk/ggk0210_msg_ggkberichten_resolved.xsd</source>-->
+<!--                            </sources>-->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
