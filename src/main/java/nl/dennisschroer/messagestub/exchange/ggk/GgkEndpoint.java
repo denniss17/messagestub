@@ -8,6 +8,7 @@ import nl.dennisschroer.messagestub.exchange.ExchangeMessageService;
 import nl.dennisschroer.messagestub.message.MessageReceivedEvent;
 import nl.egem.stuf.stuf0301.Bv03Bericht;
 import nl.egem.stuf.stuf0301.Fo01Bericht;
+import nl.egem.stuf.stuf0301.Stuurgegevens;
 import nl.stufstandaarden.koppelvlak.ggk0210.EnvelopHeenberichtGgkDi01;
 import nl.stufstandaarden.koppelvlak.ggk0210.EnvelopRetourberichtGgkDu01;
 import nl.stufstandaarden.koppelvlak.ggk0210.ParametersGgkberichten;
@@ -39,10 +40,7 @@ public class GgkEndpoint {
     public Bv03Bericht postDi01(@RequestPayload EnvelopHeenberichtGgkDi01 bericht) throws GgkException {
         try {
             // Save request
-            ExchangeMessage exchangeMessage = new ExchangeMessage("GGK", "Di01", MessageDirection.IN);
-            exchangeMessage.setBody(MarshallUtil.marshall(bericht));
-            exchangeMessage = exchangeMessageService.saveExchangeMessage(exchangeMessage);
-
+            ExchangeMessage exchangeMessage = saveRequest("Di01", MarshallUtil.marshall(bericht));
             log.info("GGK: Di01 ontvangen: " + exchangeMessage.toString());
 
             // Extract message
@@ -50,16 +48,13 @@ public class GgkEndpoint {
             String berichtData = bepaalMessageBody(bericht);
 
             // Publish message
-            eventPublisher.publishEvent(new MessageReceivedEvent(berichtFunctie.getMessageType(), berichtData));
+            eventPublisher.publishEvent(new MessageReceivedEvent(exchangeMessage, berichtFunctie.getMessageType(), berichtData));
 
             // Create response
             Bv03Bericht response = ggkResponseGenerator.generateResponse(bericht);
 
             // Save response
-            ExchangeMessage responseExchangeMessage = new ExchangeMessage("GGK", "Bv03", MessageDirection.OUT);
-            responseExchangeMessage.setBody(MarshallUtil.marshall(response));
-            responseExchangeMessage.setRequestMessage(exchangeMessage);
-            responseExchangeMessage = exchangeMessageService.saveExchangeMessage(responseExchangeMessage);
+            ExchangeMessage responseExchangeMessage = saveResponse(exchangeMessage, "Bv03", MarshallUtil.marshall(response));
             log.info("GGK: antwoorden met Bv03 : " + responseExchangeMessage.toString());
 
             // Return response
@@ -74,10 +69,7 @@ public class GgkEndpoint {
     public Bv03Bericht postDu01(@RequestPayload EnvelopRetourberichtGgkDu01 retourBericht) throws GgkException {
         try {
             // Save request
-            ExchangeMessage exchangeMessage = new ExchangeMessage("GGK", "Du01", MessageDirection.IN);
-            exchangeMessage.setBody(MarshallUtil.marshall(retourBericht));
-            exchangeMessage = exchangeMessageService.saveExchangeMessage(exchangeMessage);
-
+            ExchangeMessage exchangeMessage = saveRequest("Du01", MarshallUtil.marshall(retourBericht));
             log.info("GGK: Du01 ontvangen: " + exchangeMessage.toString());
 
             // Extract message
@@ -85,17 +77,14 @@ public class GgkEndpoint {
             String berichtData = bepaalMessageBody(retourBericht);
 
             // Publish message
-            eventPublisher.publishEvent(new MessageReceivedEvent(berichtFunctie.getMessageType(), berichtData));
+            eventPublisher.publishEvent(new MessageReceivedEvent(exchangeMessage, berichtFunctie.getMessageType(), berichtData));
 
             // Create response
             Bv03Bericht response = ggkResponseGenerator.generateResponse(retourBericht);
 
             // Save response
-            ExchangeMessage responseExchangeMessage = new ExchangeMessage("GGK", "Bv03", MessageDirection.OUT);
-            responseExchangeMessage.setBody(MarshallUtil.marshall(response));
-            responseExchangeMessage.setRequestMessage(exchangeMessage);
-            responseExchangeMessage = exchangeMessageService.saveExchangeMessage(responseExchangeMessage);
-            log.info("GGK: antwoorden met Bv03 : " + responseExchangeMessage.toString());
+            ExchangeMessage responseExchangeMessage = saveResponse(exchangeMessage, "Bv03", MarshallUtil.marshall(response));
+            log.info("GGK: antwoorden met Bv03: " + responseExchangeMessage.toString());
 
             // Return response
             return response;
@@ -109,21 +98,15 @@ public class GgkEndpoint {
     public Bv03Bericht postFo01(@RequestPayload Fo01Bericht foutBericht) throws GgkException {
         try {
             // Save request
-            ExchangeMessage exchangeMessage = new ExchangeMessage("GGK", "Fo01", MessageDirection.IN);
-            exchangeMessage.setBody(MarshallUtil.marshall(foutBericht));
-            exchangeMessage = exchangeMessageService.saveExchangeMessage(exchangeMessage);
-
+            ExchangeMessage exchangeMessage = saveRequest("Fo01", MarshallUtil.marshall(foutBericht));
             log.info("GGK: Fo01 ontvangen: " + exchangeMessage.toString());
 
             // Create response
             Bv03Bericht response = ggkResponseGenerator.generateResponse(foutBericht);
 
             // Save response
-            ExchangeMessage responseExchangeMessage = new ExchangeMessage("GGK", "Bv03", MessageDirection.OUT);
-            responseExchangeMessage.setBody(MarshallUtil.marshall(response));
-            responseExchangeMessage.setRequestMessage(exchangeMessage);
-            responseExchangeMessage = exchangeMessageService.saveExchangeMessage(responseExchangeMessage);
-            log.info("GGK: antwoorden met Bv03 : " + responseExchangeMessage.toString());
+            ExchangeMessage responseExchangeMessage = saveResponse(exchangeMessage, "Bv03", MarshallUtil.marshall(response));
+            log.info("GGK: antwoorden met Bv03: " + responseExchangeMessage.toString());
 
             // Return response
             return response;
@@ -133,21 +116,20 @@ public class GgkEndpoint {
     }
 
     private GgkBerichtFunctie bepaalBerichtFunctie(EnvelopHeenberichtGgkDi01 bericht) throws GgkException {
-        try {
-            return GgkBerichtFunctie.valueOf(bericht.getStuurgegevens().getFunctie());
-        } catch (IllegalArgumentException e) {
-            throw new GgkException(e);
-        }
+        return bepaalBerichtFunctie(bericht.getStuurgegevens());
     }
 
     private GgkBerichtFunctie bepaalBerichtFunctie(EnvelopRetourberichtGgkDu01 retourBericht) throws GgkException {
+        return bepaalBerichtFunctie(retourBericht.getStuurgegevens());
+    }
+
+    private GgkBerichtFunctie bepaalBerichtFunctie(Stuurgegevens stuurgegevens) throws GgkException {
         try {
-            return GgkBerichtFunctie.valueOf(retourBericht.getStuurgegevens().getFunctie());
+            return GgkBerichtFunctie.valueOf(stuurgegevens.getFunctie());
         } catch (IllegalArgumentException e) {
             throw new GgkException(e);
         }
     }
-
 
     private String bepaalMessageBody(EnvelopHeenberichtGgkDi01 bericht) {
         return bepaalMessageBody(bericht.getParameters());
@@ -161,4 +143,18 @@ public class GgkEndpoint {
         byte[] body = parametersGgkberichten.getBericht().getXmlBestand();
         return new String(body == null ? parametersGgkberichten.getBericht().getTekstBestand().getValue() : body);
     }
+
+    private ExchangeMessage saveRequest(String messageType, String body) {
+        ExchangeMessage exchangeMessage = new ExchangeMessage("GGK", messageType, MessageDirection.IN);
+        exchangeMessage.setBody(body);
+        return exchangeMessageService.saveExchangeMessage(exchangeMessage);
+    }
+
+    private ExchangeMessage saveResponse(ExchangeMessage requestMessage, String messageType, String body) {
+        ExchangeMessage responseExchangeMessage = new ExchangeMessage("GGK", messageType, MessageDirection.OUT);
+        responseExchangeMessage.setBody(body);
+        responseExchangeMessage.setRequestMessage(requestMessage);
+        return exchangeMessageService.saveExchangeMessage(responseExchangeMessage);
+    }
 }
+

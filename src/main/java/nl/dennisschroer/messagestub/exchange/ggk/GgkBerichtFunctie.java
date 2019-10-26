@@ -3,6 +3,7 @@ package nl.dennisschroer.messagestub.exchange.ggk;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import nl.dennisschroer.messagestub.message.MessageReceivedEvent;
 
 @Getter
 @NoArgsConstructor
@@ -30,5 +31,10 @@ public enum GgkBerichtFunctie {
     JW315("JW315"),
     JW316("JW316");
 
+    /**
+     * Het messagetype waarme de inhoud van de GGK-envelop gepubliseerd moet worden met een {@link nl.dennisschroer.messagestub.message.MessageReceivedEvent}.
+     *
+     * @see MessageReceivedEvent#getMessageType()
+     */
     private String messageType;
 }
