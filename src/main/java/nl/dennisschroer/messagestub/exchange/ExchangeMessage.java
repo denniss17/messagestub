@@ -1,6 +1,9 @@
 package nl.dennisschroer.messagestub.exchange;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import nl.dennisschroer.messagestub.MessageDirection;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,6 +24,8 @@ import java.util.Date;
  */
 @Data
 @Entity
+@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class)
 public class ExchangeMessage {
     @Id

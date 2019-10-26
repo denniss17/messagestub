@@ -35,15 +35,15 @@ public class GgkEndpoint {
         // Save request
         ExchangeMessage exchangeMessage = new ExchangeMessage("GGK", "Di01", MessageDirection.IN);
         exchangeMessage.setBody(marshall(bericht));
-        exchangeMessageService.saveExchangeMessage(exchangeMessage);
+        exchangeMessage = exchangeMessageService.saveExchangeMessage(exchangeMessage);
 
         // Create response
         Bv03Bericht response = ggkResponseGenerator.generateResponse(bericht);
 
         // Save response
         ExchangeMessage responseExchangeMessage = new ExchangeMessage("GGK", "Bv03", MessageDirection.OUT);
-        exchangeMessage.setBody(marshall(response));
-        exchangeMessage.setRequestMessage(exchangeMessage);
+        responseExchangeMessage.setBody(marshall(response));
+        responseExchangeMessage.setRequestMessage(exchangeMessage);
         exchangeMessageService.saveExchangeMessage(responseExchangeMessage);
 
         // Return response

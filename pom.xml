@@ -109,9 +109,6 @@
                                 <source>src/main/resources/exchange/ggk/ggk0210/ggkberichten/ggk0210_OntvangAsynchroon_ggkberichten.wsdl</source>
                             </sources>
                             <sourceType>wsdl</sourceType>
-<!--                            <sources>-->
-<!--                                <source>src/main/resources/exchange/ggk/ggk0210_msg_ggkberichten_resolved.xsd</source>-->
-<!--                            </sources>-->
                         </configuration>
                     </execution>
                 </executions>
