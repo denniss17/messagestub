@@ -167,10 +167,11 @@ public class GgkEndpoint {
     @Nullable
     private String determineClientIp() {
         TransportContext transportContext = TransportContextHolder.getTransportContext();
-        if (transportContext.getConnection() instanceof HttpServletConnection) {
+        if (transportContext != null && transportContext.getConnection() instanceof HttpServletConnection) {
             HttpServletRequest request = ((HttpServletConnection) transportContext.getConnection()).getHttpServletRequest();
             return request.getRemoteAddr();
         }
+
         return null;
     }
 }

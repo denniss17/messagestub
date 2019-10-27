@@ -1,0 +1,29 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:StUF="http://www.egem.nl/StUF/StUF0301">
+	<soapenv:Header/>
+	<soapenv:Body>
+		<StUF:Fo01Bericht>
+			<StUF:stuurgegevens>
+				<StUF:berichtcode>Fo01</StUF:berichtcode>
+				<StUF:zender>
+					<StUF:organisatie>01023456</StUF:organisatie>
+					<StUF:applicatie>Applicatie leverancier</StUF:applicatie>
+				</StUF:zender>
+				<StUF:ontvanger>
+					<StUF:organisatie>0484</StUF:organisatie>
+					<StUF:applicatie>GGk</StUF:applicatie>
+				</StUF:ontvanger>
+				<StUF:referentienummer>b6e9f182-bc44-4f27-9863-9a5ccc1e1cf0</StUF:referentienummer>
+				<StUF:tijdstipBericht>20160422142804</StUF:tijdstipBericht>
+				<StUF:crossRefnummer>9c0f7b90-5c69-41e5-a837-0800200c9a66</StUF:crossRefnummer>
+			</StUF:stuurgegevens>
+			<StUF:body>
+				<StUF:code>fout</StUF:code>
+				<StUF:plek>server</StUF:plek>
+				<StUF:omschrijving>Dit is een testfout</StUF:omschrijving>
+				<StUF:details>Hier zijn meer details</StUF:details>
+				<StUF:detailsXML>
+				</StUF:detailsXML>
+			</StUF:body>
+		</StUF:Fo01Bericht>
+	</soapenv:Body>
+</soapenv:Envelope>
