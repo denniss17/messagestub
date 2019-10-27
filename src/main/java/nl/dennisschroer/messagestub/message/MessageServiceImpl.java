@@ -3,6 +3,7 @@ package nl.dennisschroer.messagestub.message;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -18,7 +19,12 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
+    public Optional<Message> getMessage(Long id) {
+        return messageRepository.findById(id);
+    }
+
+    @Override
     public List<Message> getMessages() {
-        return messageRepository.findAll();
+        return messageRepository.findAllByOrderByTimestampDesc();
     }
 }

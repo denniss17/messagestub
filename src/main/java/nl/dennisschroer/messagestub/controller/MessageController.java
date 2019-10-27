@@ -5,9 +5,11 @@ import nl.dennisschroer.messagestub.message.MessageService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Controller
@@ -23,5 +25,11 @@ public class MessageController {
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Message> getMessages() {
         return messageService.getMessages();
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/{id}/", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Message getMessage(@PathVariable("id") Long id) {
+        return messageService.getMessage(id).orElseThrow(() -> new EntityNotFoundException(String.format("Message with id %d not found", id)));
     }
 }

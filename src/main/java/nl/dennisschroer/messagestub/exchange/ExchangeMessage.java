@@ -64,10 +64,10 @@ public class ExchangeMessage {
     private String body;
 
     /**
-     * Als dit bericht een response is op een andere: het bericht waar dit een response op is.
+     * Als dit bericht een request is: de teruggekomen response.
      */
     @ManyToOne
-    private ExchangeMessage requestMessage;
+    private ExchangeMessage responseMessage;
 
     @CreatedDate
     private Date timestamp;

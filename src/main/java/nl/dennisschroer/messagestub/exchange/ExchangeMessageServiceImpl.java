@@ -19,6 +19,6 @@ public class ExchangeMessageServiceImpl implements ExchangeMessageService {
 
     @Override
     public List<ExchangeMessage> getExchangeMessages() {
-        return exchangeMessageRepository.findAll();
+        return exchangeMessageRepository.findAllByOrderByTimestampDesc();
     }
 }

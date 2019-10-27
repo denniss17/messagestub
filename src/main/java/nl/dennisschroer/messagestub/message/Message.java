@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.lang.Nullable;
 
@@ -17,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Data
 @Entity
@@ -42,6 +44,9 @@ public class Message {
     @Embedded
     private MessageMeta meta = new MessageMeta();
 
+    @CreatedDate
+    private Date timestamp;
+
     /**
      * De inhoud van het bericht.
      */
@@ -56,12 +61,16 @@ public class Message {
      * een WMO301 bericht aan de GGK Di01 waarin deze zat.
      */
     @ManyToOne
-    private ExchangeMessage exchangeMessage;
+    private ExchangeMessage incomingExchangeMessage;
 
-    public Message(String type, String body, ExchangeMessage exchangeMessage) {
+    public Message(String type, String body) {
         this.type = type;
         this.body = body;
-        this.exchangeMessage = exchangeMessage;
+    }
+
+    public Message(String type, String body, ExchangeMessage incomingExchangeMessage) {
+        this(type, body);
+        this.incomingExchangeMessage = incomingExchangeMessage;
     }
 
     @Data
@@ -81,5 +90,11 @@ public class Message {
          */
         @Nullable
         private Integer startnummer;
+
+        /**
+         * Error message when there is something wrong with the message.
+         */
+        @Nullable
+        private String error;
     }
 }

@@ -162,11 +162,17 @@ public class GgkEndpoint {
     }
 
     private ExchangeMessage saveResponse(ExchangeMessage requestMessage, String messageType, String body) {
+        // Save response
         ExchangeMessage responseExchangeMessage = new ExchangeMessage("GGK", messageType, MessageDirection.OUT);
         responseExchangeMessage.setBody(body);
-        responseExchangeMessage.setRequestMessage(requestMessage);
         responseExchangeMessage.setPeerUrl(determineClientIp());
-        return exchangeMessageService.saveExchangeMessage(responseExchangeMessage);
+        responseExchangeMessage = exchangeMessageService.saveExchangeMessage(responseExchangeMessage);
+
+        // Add response to request
+        requestMessage.setResponseMessage(responseExchangeMessage);
+        exchangeMessageService.saveExchangeMessage(requestMessage);
+
+        return responseExchangeMessage;
     }
 
     @Nullable

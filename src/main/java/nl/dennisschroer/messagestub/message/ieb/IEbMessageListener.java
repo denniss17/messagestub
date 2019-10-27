@@ -46,7 +46,8 @@ public class IEbMessageListener {
                     break;
             }
         } catch (JAXBException e) {
-            e.printStackTrace();
+            log.error("Error while parsing message", e);
+            message.getMeta().setError(e.getClass().getSimpleName() + " while parsing message: " + e.getMessage());
         }
     }
 }

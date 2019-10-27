@@ -18,6 +18,6 @@ public class MessageListener {
     @EventListener
     public void onMessageReceived(MessageReceivedEvent event) {
         messageService.saveMessage(event.getMessage());
-        log.info("Message ontvangen vanaf " + event.getMessage().getExchangeMessage().getExchangeType() + ": " + event.getMessage().toString());
+        log.info("Message ontvangen vanaf " + event.getMessage().getIncomingExchangeMessage().getExchangeType() + ": " + event.getMessage().toString());
     }
 }

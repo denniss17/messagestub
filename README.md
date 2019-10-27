@@ -11,7 +11,7 @@ strict structure.
 
 ### Message
 
-A message contains the actual information being transfered to another party. This message has a predeterimed format.
+A message contains the actual information being transferred to another party. This message has a predeterimed format.
 
 An example is a WMO301 message in the social domain, which is used to communicate an allocation of a certain service
 or subsidiary to a certain client.
