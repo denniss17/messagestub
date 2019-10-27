@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
+import nl.dennisschroer.messagestub.message.event.NewMessageEvent;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.lang.Nullable;
@@ -37,7 +38,7 @@ public class Message {
     private String type;
 
     /**
-     * Metainformatie die door listeners voor een {@link MessageReceivedEvent} gevuld kan worden met extra informatie die
+     * Metainformatie die door listeners voor een {@link NewMessageEvent} gevuld kan worden met extra informatie die
      * is afgeleid uit de body.
      */
     @NotNull

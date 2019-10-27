@@ -1,14 +1,13 @@
-package nl.dennisschroer.messagestub.message;
+package nl.dennisschroer.messagestub.message.event;
 
 import lombok.Data;
+import nl.dennisschroer.messagestub.message.Message;
 
 /**
  * Event wat aangeeft dat er een message ontvangen is via één van de exchanges.
- * <p>
- * Ontvangers kunnen op basis van dit event bepalen of zij kaas van de inhoud kunnen maken.
  */
 @Data
-public class MessageReceivedEvent {
+public class MessageReceivedEvent implements NewMessageEvent {
     private final Message message;
 
     public MessageReceivedEvent(Message message) {

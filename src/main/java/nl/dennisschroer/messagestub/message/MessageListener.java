@@ -1,6 +1,8 @@
 package nl.dennisschroer.messagestub.message;
 
 import lombok.extern.apachecommons.CommonsLog;
+import nl.dennisschroer.messagestub.message.event.MessageReceivedEvent;
+import nl.dennisschroer.messagestub.message.event.NewMessageEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -16,8 +18,12 @@ public class MessageListener {
 
     @Order(1000) // Order zodat deze altijd als laatste gaat
     @EventListener
-    public void onMessageReceived(MessageReceivedEvent event) {
+    public void onMessageReceived(NewMessageEvent event) {
         messageService.saveMessage(event.getMessage());
-        log.info("Message ontvangen vanaf " + event.getMessage().getIncomingExchangeMessage().getExchangeType() + ": " + event.getMessage().toString());
+        if (event instanceof MessageReceivedEvent) {
+            log.info("Message received via " + event.getMessage().getIncomingExchangeMessage().getExchangeType() + ": " + event.getMessage().toString());
+        } else {
+            log.info("Message generated: " + event.getMessage().toString());
+        }
     }
 }

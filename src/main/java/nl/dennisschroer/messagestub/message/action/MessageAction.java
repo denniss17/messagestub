@@ -1,12 +1,12 @@
-package nl.dennisschroer.messagestub.message;
+package nl.dennisschroer.messagestub.message.action;
 
-import javax.xml.bind.JAXBException;
-import javax.xml.datatype.DatatypeConfigurationException;
+import nl.dennisschroer.messagestub.message.Message;
+
 import java.util.Set;
 
 /**
  * Een actie die op een bepaald type bericht of types berichten kan worden uitgevoerd.
- *
+ * <p>
  * Voorbeeld: het genereren van een retourbericht (WMO302) bij een WMO301.
  */
 public interface MessageAction {
@@ -28,5 +28,5 @@ public interface MessageAction {
     /**
      * Voer deze actie uit over een {@link Message}.
      */
-    void execute(Message message) throws Exception;
+    MessageActionResult execute(Message message) throws Exception;
 }

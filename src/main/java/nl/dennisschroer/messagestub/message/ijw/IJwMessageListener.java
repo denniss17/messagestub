@@ -3,7 +3,7 @@ package nl.dennisschroer.messagestub.message.ijw;
 import lombok.extern.apachecommons.CommonsLog;
 import nl.dennisschroer.messagestub.MarshallUtil;
 import nl.dennisschroer.messagestub.message.Message;
-import nl.dennisschroer.messagestub.message.MessageReceivedEvent;
+import nl.dennisschroer.messagestub.message.event.NewMessageEvent;
 import nl.istandaarden.generated.ijw.ijw301.IJW301Bericht;
 import nl.istandaarden.generated.ijw.ijw302.IJW302Bericht;
 import nl.istandaarden.generated.ijw.ijw303.IJW303Bericht;
@@ -24,7 +24,7 @@ import javax.xml.bind.JAXBException;
 public class IJwMessageListener {
     @Order(1)
     @EventListener
-    public void onMessageReceived(MessageReceivedEvent event) {
+    public void onMessageReceived(NewMessageEvent event) {
         Message message = event.getMessage();
 
         try {

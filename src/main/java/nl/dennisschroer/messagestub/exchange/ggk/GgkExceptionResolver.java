@@ -2,7 +2,7 @@ package nl.dennisschroer.messagestub.exchange.ggk;
 
 import lombok.extern.apachecommons.CommonsLog;
 import nl.dennisschroer.messagestub.MarshallUtil;
-import nl.dennisschroer.messagestub.MessageDirection;
+import nl.dennisschroer.messagestub.exchange.MessageDirection;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessageService;
 import nl.egem.stuf.stuf0301.Fo03Bericht;

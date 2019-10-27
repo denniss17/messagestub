@@ -3,7 +3,7 @@ package nl.dennisschroer.messagestub.message.iwmo;
 import lombok.extern.apachecommons.CommonsLog;
 import nl.dennisschroer.messagestub.MarshallUtil;
 import nl.dennisschroer.messagestub.message.Message;
-import nl.dennisschroer.messagestub.message.MessageReceivedEvent;
+import nl.dennisschroer.messagestub.message.event.NewMessageEvent;
 import nl.istandaarden.generated.iwmo.wmo301.WMO301Bericht;
 import nl.istandaarden.generated.iwmo.wmo302.WMO302Bericht;
 import nl.istandaarden.generated.iwmo.wmo303.WMO303Bericht;
@@ -24,7 +24,7 @@ import javax.xml.bind.JAXBException;
 public class IWmoMessageListener {
     @Order(1)
     @EventListener
-    public void onMessageReceived(MessageReceivedEvent event) {
+    public void onMessageReceived(NewMessageEvent event) {
         Message message = event.getMessage();
 
         try {

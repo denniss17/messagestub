@@ -14,7 +14,7 @@ public class MarshallUtil {
      * Marshall java naar XML.
      */
     public static String marshall(Object bericht) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(bericht.getClass());
+        JAXBContext jaxbContext = JAXBContext.newInstance(bericht instanceof JAXBElement ? ((JAXBElement) bericht).getDeclaredType() : bericht.getClass());
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         StringWriter writer = new StringWriter();

@@ -2,11 +2,11 @@ package nl.dennisschroer.messagestub.exchange.ggk;
 
 import lombok.extern.apachecommons.CommonsLog;
 import nl.dennisschroer.messagestub.MarshallUtil;
-import nl.dennisschroer.messagestub.MessageDirection;
+import nl.dennisschroer.messagestub.exchange.MessageDirection;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessageService;
 import nl.dennisschroer.messagestub.message.Message;
-import nl.dennisschroer.messagestub.message.MessageReceivedEvent;
+import nl.dennisschroer.messagestub.message.event.MessageReceivedEvent;
 import nl.egem.stuf.stuf0301.Bv03Bericht;
 import nl.egem.stuf.stuf0301.Fo01Bericht;
 import nl.egem.stuf.stuf0301.Stuurgegevens;

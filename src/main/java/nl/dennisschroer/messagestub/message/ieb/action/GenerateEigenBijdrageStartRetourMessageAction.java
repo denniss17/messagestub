@@ -3,11 +3,13 @@ package nl.dennisschroer.messagestub.message.ieb.action;
 import lombok.Getter;
 import nl.dennisschroer.messagestub.MarshallUtil;
 import nl.dennisschroer.messagestub.message.Message;
-import nl.dennisschroer.messagestub.message.MessageAction;
-import nl.dennisschroer.messagestub.message.MessageService;
+import nl.dennisschroer.messagestub.message.action.MessageAction;
+import nl.dennisschroer.messagestub.message.action.MessageActionResult;
+import nl.dennisschroer.messagestub.message.event.MessageGeneratedEvent;
 import nl.istandaarden.generated.ieb.wmo401.WMO401Bericht;
 import nl.istandaarden.generated.ieb.wmo402.ObjectFactory;
 import nl.istandaarden.generated.ieb.wmo402.WMO402Bericht;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 import javax.xml.datatype.DatatypeFactory;
@@ -18,7 +20,7 @@ import java.util.Set;
 
 @Component
 public class GenerateEigenBijdrageStartRetourMessageAction implements MessageAction {
-    private final MessageService messageService;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Getter
     private final Set<String> applicableMessageTypes = Collections.singleton("WMO401");
@@ -29,16 +31,18 @@ public class GenerateEigenBijdrageStartRetourMessageAction implements MessageAct
     @Getter
     private final String description = "Genereer een retourbericht (402) op een eigen bijdrage startbericht";
 
-    public GenerateEigenBijdrageStartRetourMessageAction(MessageService messageService) {
-        this.messageService = messageService;
+
+    public GenerateEigenBijdrageStartRetourMessageAction(ApplicationEventPublisher eventPublisher) {
+        this.eventPublisher = eventPublisher;
     }
 
     @Override
-    public void execute(Message message) throws Exception {
+    public MessageActionResult execute(Message message) throws Exception {
         WMO401Bericht bericht = MarshallUtil.unmarshall(message.getBody(), WMO401Bericht.class);
 
         ObjectFactory factory = new ObjectFactory();
 
+        // Maak bericht
         WMO402Bericht retourBericht = factory.createWMO402Bericht();
         retourBericht.setHeader(factory.createHeader());
         retourBericht.getHeader().setBerichtCode("471");
@@ -51,7 +55,18 @@ public class GenerateEigenBijdrageStartRetourMessageAction implements MessageAct
         retourBericht.getHeader().setDagtekeningRetour(DatatypeFactory.newInstance().newXMLGregorianCalendar(GregorianCalendar.from(ZonedDateTime.now())));
         retourBericht.getHeader().setXsdVersieRetour(bericht.getHeader().getXsdVersie());
 
-        messageService.saveMessage(new Message("WMO402", MarshallUtil.marshall(retourBericht)));
+        // Maak message
+        Message result = new Message("WMO402", MarshallUtil.marshall(factory.createBericht(retourBericht)));
+
+        // Vul metadata
+        result.getMeta().setBsn(message.getMeta().getBsn());
+        result.getMeta().setStartnummer(message.getMeta().getStartnummer());
+
+        eventPublisher.publishEvent(new MessageGeneratedEvent(result));
+
+        MessageActionResult actionResult = new MessageActionResult();
+        actionResult.addGeneratedEntity("message", result.getId());
+        return actionResult;
     }
 
     private String generateIdentificatieRetour(WMO401Bericht bericht) {
