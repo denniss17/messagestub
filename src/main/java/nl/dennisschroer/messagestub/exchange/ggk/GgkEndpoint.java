@@ -13,12 +13,17 @@ import nl.stufstandaarden.koppelvlak.ggk0210.EnvelopHeenberichtGgkDi01;
 import nl.stufstandaarden.koppelvlak.ggk0210.EnvelopRetourberichtGgkDu01;
 import nl.stufstandaarden.koppelvlak.ggk0210.ParametersGgkberichten;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import org.springframework.ws.soap.server.endpoint.annotation.SoapAction;
+import org.springframework.ws.transport.context.TransportContext;
+import org.springframework.ws.transport.context.TransportContextHolder;
+import org.springframework.ws.transport.http.HttpServletConnection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.JAXBException;
 
 @Endpoint
@@ -147,6 +152,7 @@ public class GgkEndpoint {
     private ExchangeMessage saveRequest(String messageType, String body) {
         ExchangeMessage exchangeMessage = new ExchangeMessage("GGK", messageType, MessageDirection.IN);
         exchangeMessage.setBody(body);
+        exchangeMessage.setPeerUrl(determineClientIp());
         return exchangeMessageService.saveExchangeMessage(exchangeMessage);
     }
 
@@ -154,7 +160,18 @@ public class GgkEndpoint {
         ExchangeMessage responseExchangeMessage = new ExchangeMessage("GGK", messageType, MessageDirection.OUT);
         responseExchangeMessage.setBody(body);
         responseExchangeMessage.setRequestMessage(requestMessage);
+        responseExchangeMessage.setPeerUrl(determineClientIp());
         return exchangeMessageService.saveExchangeMessage(responseExchangeMessage);
+    }
+
+    @Nullable
+    private String determineClientIp() {
+        TransportContext transportContext = TransportContextHolder.getTransportContext();
+        if (transportContext.getConnection() instanceof HttpServletConnection) {
+            HttpServletRequest request = ((HttpServletConnection) transportContext.getConnection()).getHttpServletRequest();
+            return request.getRemoteAddr();
+        }
+        return null;
     }
 }
 

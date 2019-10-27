@@ -31,6 +31,8 @@ class GgkExceptionResolver extends SimpleSoapExceptionResolver {
 
     @Override
     protected void customizeFault(MessageContext messageContext, Object endpoint, Exception exception, SoapFault fault) {
+        log.error(exception.getMessage(), exception);
+
         if (exception instanceof GgkException) {
             final SoapFaultDetail faultDetail = fault.addFaultDetail();
             final Result result = faultDetail.getResult();

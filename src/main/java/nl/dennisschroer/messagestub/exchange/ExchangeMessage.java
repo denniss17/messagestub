@@ -32,21 +32,41 @@ public class ExchangeMessage {
     @GeneratedValue
     private Long id;
 
+    /**
+     * Identificatie van de exchange (bijv GGK) via welke dit bericht is ontvangen of verstuurd.
+     */
     @NonNull
     private String exchangeType;
 
+    /**
+     * Het type bericht binnen de exchange wat is ontvangen of verstuurd, bijvoorbeeld "Di01" of "Fo03"
+     */
     @NonNull
     private String messageType;
 
+    /**
+     * Geeft aan of het om een ontvangen of verzonden bericht gaat.
+     */
     @NonNull
     @Enumerated(EnumType.STRING)
     private MessageDirection direction;
 
+    /**
+     * Het adres van de andere partij.
+     *
+     * In het geval van een incoming bericht: het ipadres van de client
+     * In het geval van een uitgaand bericht: het adres waar het bericht heen is gestuurd.
+     */
+    private String peerUrl;
+
+    /**
+     * De raw content van het bericht, bijvoorbeeld XML.
+     */
     @Column(length = 2048)
     private String body;
 
     /**
-     * If this exchange message is a response: the request message to which this message is a response.
+     * Als dit bericht een response is op een andere: het bericht waar dit een response op is.
      */
     @ManyToOne
     private ExchangeMessage requestMessage;
