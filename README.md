@@ -33,4 +33,14 @@ of message, which envelopes the original message.
 
 TODO
 
+## Supported protocols
 
+Currently these exchanges are supported:
+
+- GGK (only incoming). Point your application to `<host>:<port>/services`. The default port is 8080.
+
+Currently these messages are supported:
+
+- iWMO 2.3 (https://www.istandaarden.nl/istandaarden/iwmo)
+- iJw 2.3 (https://www.istandaarden.nl/istandaarden/ijw)
+- iEb 1.0 (https://www.istandaarden.nl/istandaarden/ieb)

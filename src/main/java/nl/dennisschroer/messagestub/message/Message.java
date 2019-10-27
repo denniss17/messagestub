@@ -75,5 +75,11 @@ public class Message {
         private Integer beschikkingsnummer;
         @Nullable
         private String conversatieId;
+
+        /**
+         * Startnummer uit iEb (eigen bijdrage).
+         */
+        @Nullable
+        private Integer startnummer;
     }
 }

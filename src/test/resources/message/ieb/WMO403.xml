@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wmo403:Bericht xmlns:ieb="http://www.istandaarden.nl/ieb/1_0/basisschema/schema" xmlns:wmo403="http://www.istandaarden.nl/ieb/1_0/wmo403/schema" >
+	<wmo403:Header>
+		<wmo403:BerichtCode>472</wmo403:BerichtCode>
+		<wmo403:BerichtVersie>1</wmo403:BerichtVersie>
+		<wmo403:BerichtSubversie>0</wmo403:BerichtSubversie>
+		<wmo403:Afzender>1916</wmo403:Afzender>
+		<wmo403:BerichtIdentificatie>
+			<ieb:Identificatie>123456789012</ieb:Identificatie>
+			<ieb:Dagtekening>2020-02-01</ieb:Dagtekening>
+		</wmo403:BerichtIdentificatie>
+		<wmo403:XsdVersie>
+			<ieb:BasisschemaXsdVersie>1.1.0</ieb:BasisschemaXsdVersie>
+			<ieb:BerichtXsdVersie>1.1.0</ieb:BerichtXsdVersie>
+		</wmo403:XsdVersie>
+	</wmo403:Header>
+	<wmo403:Client>
+		<wmo403:Bsn>123456782</wmo403:Bsn>
+		<wmo403:StopEigenBijdrage>
+			<wmo403:EbStartNummer>123</wmo403:EbStartNummer>
+			<wmo403:EbStopdatum>2020-02-21</wmo403:EbStopdatum>
+			<wmo403:StatusAanlevering>1</wmo403:StatusAanlevering>
+		</wmo403:StopEigenBijdrage>
+	</wmo403:Client>
+</wmo403:Bericht>

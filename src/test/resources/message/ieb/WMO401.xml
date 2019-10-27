@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wmo401:Bericht xmlns:ieb="http://www.istandaarden.nl/ieb/1_0/basisschema/schema" xmlns:wmo401="http://www.istandaarden.nl/ieb/1_0/wmo401/schema" >
+	<wmo401:Header>
+		<wmo401:BerichtCode>470</wmo401:BerichtCode>
+		<wmo401:BerichtVersie>1</wmo401:BerichtVersie>
+		<wmo401:BerichtSubversie>0</wmo401:BerichtSubversie>
+		<wmo401:Afzender>1916</wmo401:Afzender>
+		<wmo401:BerichtIdentificatie>
+			<ieb:Identificatie>123456789012</ieb:Identificatie>
+			<ieb:Dagtekening>2020-01-01</ieb:Dagtekening>
+		</wmo401:BerichtIdentificatie>
+		<wmo401:XsdVersie>
+			<ieb:BasisschemaXsdVersie>1.1.0</ieb:BasisschemaXsdVersie>
+			<ieb:BerichtXsdVersie>1.1.0</ieb:BerichtXsdVersie>
+		</wmo401:XsdVersie>
+	</wmo401:Header>
+	<wmo401:Client>
+		<wmo401:Bsn>123456782</wmo401:Bsn>
+		<wmo401:StartEigenBijdrage>
+			<wmo401:EbStartNummer>123</wmo401:EbStartNummer>
+			<wmo401:EbStartdatum>2020-01-01</wmo401:EbStartdatum>
+			<wmo401:EbKostprijs>
+				<ieb:KostprijsBedrag>3100</ieb:KostprijsBedrag>
+				<ieb:KostprijsStartdatum>2020-01-01</ieb:KostprijsStartdatum>
+			</wmo401:EbKostprijs>
+			<wmo401:StatusAanlevering>1</wmo401:StatusAanlevering>
+		</wmo401:StartEigenBijdrage>
+	</wmo401:Client>
+</wmo401:Bericht>

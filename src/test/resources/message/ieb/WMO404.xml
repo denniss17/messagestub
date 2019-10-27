@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wmo404:Bericht xmlns:ieb="http://www.istandaarden.nl/ieb/1_0/basisschema/schema" xmlns:wmo404="http://www.istandaarden.nl/ieb/1_0/wmo404/schema" >
+	<wmo404:Header>
+		<wmo404:BerichtCode>473</wmo404:BerichtCode>
+		<wmo404:BerichtVersie>1</wmo404:BerichtVersie>
+		<wmo404:BerichtSubversie>0</wmo404:BerichtSubversie>
+		<wmo404:Afzender>1916</wmo404:Afzender>
+		<wmo404:BerichtIdentificatie>
+			<ieb:Identificatie>123456789012</ieb:Identificatie>
+			<ieb:Dagtekening>2020-02-01</ieb:Dagtekening>
+		</wmo404:BerichtIdentificatie>
+		<wmo404:XsdVersie>
+			<ieb:BasisschemaXsdVersie>1.1.0</ieb:BasisschemaXsdVersie>
+			<ieb:BerichtXsdVersie>1.1.0</ieb:BerichtXsdVersie>
+		</wmo404:XsdVersie>
+		<wmo404:IdentificatieRetour>998</wmo404:IdentificatieRetour>
+		<wmo404:DagtekeningRetour>2020-01-05</wmo404:DagtekeningRetour>
+		<wmo404:XsltVersie>1.6.2</wmo404:XsltVersie>
+		<wmo404:XsdVersieRetour>
+			<ieb:BasisschemaXsdVersie>1.1.0</ieb:BasisschemaXsdVersie>
+			<ieb:BerichtXsdVersie>1.1.0</ieb:BerichtXsdVersie>
+		</wmo404:XsdVersieRetour>
+	</wmo404:Header>
+</wmo404:Bericht>
