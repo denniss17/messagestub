@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.istandaarden.nl/ieb/1_0/basisschema/schema" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ieb="http://www.istandaarden.nl/ieb/1_0/basisschema/schema">
+	<xs:annotation>
+		<xs:appinfo>
+			<ieb:standaard>ieb</ieb:standaard>
+			<ieb:bericht>basisschema</ieb:bericht>
+			<ieb:release>1.0</ieb:release>
+			<ieb:BasisschemaXsdVersie>1.2.0</ieb:BasisschemaXsdVersie>
+			<ieb:BasisschemaXsdMinVersie>1.1.0</ieb:BasisschemaXsdMinVersie>
+			<ieb:BasisschemaXsdMaxVersie>1.2.0</ieb:BasisschemaXsdMaxVersie>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType name="CDT_BerichtIdentificatie">
+		<xs:annotation>
+			<xs:documentation>Naam of nummer en dagtekening ter identificatie van een totale aanlevering.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Identificatie" type="ieb:LDT_IdentificatieBericht">
+				<xs:annotation>
+					<xs:documentation>Naam of nummer, die ter identificatie aan een totale aanlevering kan worden meegegeven.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Dagtekening" type="ieb:LDT_Datum">
+				<xs:annotation>
+					<xs:documentation>De datum van verzending van het bericht.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CDT_Kostprijs">
+		<xs:sequence>
+			<xs:element name="KostprijsBedrag" type="ieb:LDT_Bedrag">
+				<xs:annotation>
+					<xs:documentation>Het bedrag dat de hoogte van de te bewaken kostprijs aangeeft.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KostprijsStartdatum" type="ieb:LDT_Datum">
+				<xs:annotation>
+					<xs:documentation>De datum die aangeeft vanaf welke datum kostprijsbewaking moet plaatsvinden voor de client.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CDT_XsdVersie">
+		<xs:sequence>
+			<xs:element name="BasisschemaXsdVersie" type="ieb:LDT_Versie">
+			</xs:element>
+			<xs:element name="BerichtXsdVersie" type="ieb:LDT_Versie">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LDT_Bedrag">
+		<xs:annotation>
+			<xs:documentation>Bedrag in 1/100 van gehanteerde valuta. Bijvoorbeeld 10000 is tienduizend eurocent, is 100 Euro.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LDT_BerichtCode">
+		<xs:annotation>
+			<xs:documentation>Code ter identificatie van een soort bericht. Per bericht is gespecificeerd welke code gebruikt moet worden. De volledige codelijst is te vinden op het portaal van Vektis (http://ei.vektis.nl/WespCodelijstenDetail.aspx?Co_Ge_Code=COD002&amp;Co_Or_Code=VEKT).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LDT_BerichtSubversie">
+		<xs:annotation>
+			<xs:documentation>Volgnummer van de formele uitgifte van een minor release van een iStandaard.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LDT_BerichtVersie">
+		<xs:annotation>
+			<xs:documentation>Volgnummer van de formele uitgifte van een major release van een iStandaard.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LDT_BurgerServicenummer">
+		<xs:annotation>
+			<xs:documentation>Een door de overheid toegekend identificerend nummer in het kader van het vereenvoudigen van het contact tussen overheid en burgers en het verminderen van de administratieve lasten.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="9"/>
+			<xs:pattern value="[0-9]{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LDT_Datum">
+		<xs:annotation>
+			<xs:documentation>Datum</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date">
+			<xs:pattern value="[^:Z]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LDT_Gemeente">
+		<xs:annotation>
+			<xs:documentation>Identificerende code van een gemeente die betrokken is bij de uitvoering van zorg of ondersteuning.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:pattern value="[0-9]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LDT_IdentificatieBericht">
+		<xs:annotation>
+			<xs:documentation>Naam of nummer, die ter identificatie aan een totale aanlevering kan worden meegegeven.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+			<xs:pattern value=".*[^\s].*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LDT_Nummer">
+		<xs:annotation>
+			<xs:documentation>Nummer</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LDT_RetourCode">
+		<xs:annotation>
+			<xs:documentation>Melding in een iStandaarden-retourbericht. Het betreft een code die in een retourbericht het resultaat van de beoordeling van een (deel van een) ontvangen bericht weergeeft.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0001">
+				<xs:annotation>
+					<xs:documentation>Bericht is afgekeurd om technische redenen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0200">
+				<xs:annotation>
+					<xs:documentation>Geen opmerking over deze berichtklasse.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="0233">
+				<xs:annotation>
+					<xs:documentation>Berichtklasse is niet beoordeeld.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="8848">
+				<xs:annotation>
+					<xs:documentation>Dagtekening moet gelijk zijn aan of voor de systeemdatum liggen.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9071">
+				<xs:annotation>
+					<xs:documentation>Bericht voldoet niet aan technische regel 071.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9102">
+				<xs:annotation>
+					<xs:documentation>Bericht voldoet niet aan technische regel 102.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9103">
+				<xs:annotation>
+					<xs:documentation>Bericht voldoet niet aan technische regel 103.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9104">
+				<xs:annotation>
+					<xs:documentation>Bericht voldoet niet aan technische regel 104.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9114">
+				<xs:annotation>
+					<xs:documentation>Bericht voldoet niet aan technische regel 114.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9115">
+				<xs:annotation>
+					<xs:documentation>Bericht voldoet niet aan technische regel 115.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9328">
+				<xs:annotation>
+					<xs:documentation>Bericht voldoet niet aan technische regel 328.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9329">
+				<xs:annotation>
+					<xs:documentation>Bericht voldoet niet aan technische regel 329.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9330">
+				<xs:annotation>
+					<xs:documentation>Bericht voldoet niet aan technische regel 330.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="S300">
+				<xs:annotation>
+					<xs:documentation>Gemeentecode komt niet voor in de lijst van CBS.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="S333">
+				<xs:annotation>
+					<xs:documentation>Kostprijsbedrag niet groter dan nationaal tarief op KostprijsStartdatum.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LDT_StatusAanlevering">
+		<xs:annotation>
+			<xs:documentation>Indicatie over de status van de informatie in de berichtklasse.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>Eerste aanlevering</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>Gewijzigde aanlevering</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>Verwijderen aanlevering</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="9">
+				<xs:annotation>
+					<xs:documentation>Niet van toepassing (ongewijzigd)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:maxLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LDT_Versie">
+		<xs:annotation>
+			<xs:documentation>Volgnummer van de formele uitgifte van een versie.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:pattern value="(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

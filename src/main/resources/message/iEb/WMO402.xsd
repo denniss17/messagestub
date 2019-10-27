@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ieb="http://www.istandaarden.nl/ieb/1_0/basisschema/schema" xmlns:wmo402="http://www.istandaarden.nl/ieb/1_0/wmo402/schema" targetNamespace="http://www.istandaarden.nl/ieb/1_0/wmo402/schema" elementFormDefault="qualified">
+	<xs:import namespace="http://www.istandaarden.nl/ieb/1_0/basisschema/schema" schemaLocation="basisschema.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<ieb:standaard>ieb</ieb:standaard>
+			<ieb:bericht>wmo402</ieb:bericht>
+			<ieb:release>1.0</ieb:release>
+			<ieb:BerichtXsdVersie>1.2.0</ieb:BerichtXsdVersie>
+			<ieb:BerichtXsdMinVersie>1.1.0</ieb:BerichtXsdMinVersie>
+			<ieb:BerichtXsdMaxVersie>1.2.0</ieb:BerichtXsdMaxVersie>
+			<ieb:BasisschemaXsdVersie>1.2.0</ieb:BasisschemaXsdVersie>
+			<ieb:BasisschemaXsdMinVersie>1.1.0</ieb:BasisschemaXsdMinVersie>
+			<ieb:BasisschemaXsdMaxVersie>1.2.0</ieb:BasisschemaXsdMaxVersie>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="Bericht" type="wmo402:Root"/>
+	<xs:complexType name="Root">
+		<xs:annotation>
+			<xs:documentation>Bericht voor de start eigen bijdrage aan het CAK.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Header" type="wmo402:Header"/>
+			<xs:element name="Client" type="wmo402:Client" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Header">
+		<xs:annotation>
+			<xs:documentation>De header bevat de identificerende gegevens van het bestand.  </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BerichtCode">
+				<xs:annotation>
+					<xs:documentation>Code ter identificatie van een soort bericht.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="ieb:LDT_BerichtCode">
+						<xs:pattern value="471"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="BerichtVersie">
+				<xs:annotation>
+					<xs:documentation>Volgnummer van de formele uitgifte van een major release van een iStandaard.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="ieb:LDT_BerichtVersie">
+						<xs:pattern value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="BerichtSubversie">
+				<xs:annotation>
+					<xs:documentation>Volgnummer van de formele uitgifte van een minor release van een iStandaard.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="ieb:LDT_BerichtSubversie">
+						<xs:pattern value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Afzender" type="ieb:LDT_Gemeente">
+				<xs:annotation>
+					<xs:documentation>Identificatie van een gemeente die betrokken is bij de uitvoering van zorg of ondersteuning.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BerichtIdentificatie" type="ieb:CDT_BerichtIdentificatie">
+				<xs:annotation>
+					<xs:documentation>Naam of nummer en dagtekening ter identificatie van een totale aanlevering.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="XsdVersie" type="ieb:CDT_XsdVersie">
+				<xs:annotation>
+					<xs:documentation>Volgnummer van de formele uitgifte van een versie van de XSD's die zijn ingezet voor het opstellen van het heenbericht.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IdentificatieRetour" type="ieb:LDT_IdentificatieBericht">
+				<xs:annotation>
+					<xs:documentation>Naam of nummer ter identificatie van een retourbericht.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DagtekeningRetour" type="ieb:LDT_Datum">
+				<xs:annotation>
+					<xs:documentation>Dagtekening van het retourbericht.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="XsltVersie" type="ieb:LDT_Versie" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Volgnummer van de formele uitgifte van een versie van de XSLT's die zijn ingezet voor de controle van het heenbericht.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="XsdVersieRetour" type="ieb:CDT_XsdVersie">
+				<xs:annotation>
+					<xs:documentation>Volgnummer van de formele uitgifte van een versie van de XSD's die zijn ingezet voor het opstellen van het retourbericht.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RetourCodes" type="wmo402:RetourCodes" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RetourCodes">
+		<xs:sequence>
+			<xs:element name="RetourCode" type="ieb:LDT_RetourCode" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Gecodeerde aanduiding in een retourbericht van het resultaat van de beoordeling van een (deel van het) ontvangen bericht.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Client">
+		<xs:annotation>
+			<xs:documentation>Persoonsgegevens van de client.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Bsn" type="ieb:LDT_BurgerServicenummer">
+				<xs:annotation>
+					<xs:documentation>Een door de overheid toegekend identificerend nummer in het kader van het vereenvoudigen van het contact tussen overheid en burgers en het verminderen van de administratieve lasten.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartEigenBijdrage" type="wmo402:StartEigenBijdrage"/>
+			<xs:element name="RetourCodes" type="wmo402:RetourCodes"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StartEigenBijdrage">
+		<xs:annotation>
+			<xs:documentation>Gegevens over de start van de eigen bijdrage</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EbStartNummer" type="ieb:LDT_Nummer">
+				<xs:annotation>
+					<xs:documentation>Een binnen de gemeente uniek identificerend nummer voor de start eigen bijdrage voor een burger.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EbStartdatum" type="ieb:LDT_Datum">
+				<xs:annotation>
+					<xs:documentation>De startdatum voor de inning van eigen bijdrage voor een burger.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EbKostprijs" type="ieb:CDT_Kostprijs" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Informatie over de startdatum van kostprijsbewaking en de hoogte van de kostprijs.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusAanlevering" type="ieb:LDT_StatusAanlevering">
+				<xs:annotation>
+					<xs:documentation>Indicatie over de status van de informatie in de berichtklasse.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RetourCodes" type="wmo402:RetourCodes"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

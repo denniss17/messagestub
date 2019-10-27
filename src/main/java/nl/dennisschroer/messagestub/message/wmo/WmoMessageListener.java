@@ -4,7 +4,7 @@ import lombok.extern.apachecommons.CommonsLog;
 import nl.dennisschroer.messagestub.MarshallUtil;
 import nl.dennisschroer.messagestub.message.Message;
 import nl.dennisschroer.messagestub.message.MessageReceivedEvent;
-import nl.istandaarden.generated.wmo.wmo301.WMO301Bericht;
+import nl.istandaarden.generated.iwmo.wmo301.WMO301Bericht;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;

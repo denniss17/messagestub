@@ -70,33 +70,38 @@
                 <executions>
                     <!-- Message: WMO and JW -->
                     <execution>
-                        <id>message-wmo-jw</id>
+                        <id>message-istandaarden</id>
                         <goals>
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
                             <clearOutputDir>false</clearOutputDir>
                             <sources>
-                                <source>src/main/resources/message/wmo/basisschema.xsd</source>
-                                <source>src/main/resources/message/wmo/WMO301.xsd</source>
-                                <source>src/main/resources/message/wmo/WMO302.xsd</source>
-                                <source>src/main/resources/message/wmo/WMO303.xsd</source>
-                                <source>src/main/resources/message/wmo/WMO305.xsd</source>
-                                <source>src/main/resources/message/wmo/WMO306.xsd</source>
-                                <source>src/main/resources/message/wmo/WMO307.xsd</source>
-                                <source>src/main/resources/message/wmo/WMO308.xsd</source>
-                                <source>src/main/resources/message/wmo/WMO315.xsd</source>
-                                <source>src/main/resources/message/wmo/WMO316.xsd</source>
-                                <source>src/main/resources/message/jw/basisschema.xsd</source>
-                                <source>src/main/resources/message/jw/JW301.xsd</source>
-                                <source>src/main/resources/message/jw/JW302.xsd</source>
-                                <source>src/main/resources/message/jw/JW303.xsd</source>
-                                <source>src/main/resources/message/jw/JW305.xsd</source>
-                                <source>src/main/resources/message/jw/JW306.xsd</source>
-                                <source>src/main/resources/message/jw/JW307.xsd</source>
-                                <source>src/main/resources/message/jw/JW308.xsd</source>
-                                <source>src/main/resources/message/jw/JW315.xsd</source>
-                                <source>src/main/resources/message/jw/JW316.xsd</source>
+                                <source>src/main/resources/message/iWmo/basisschema.xsd</source>
+                                <source>src/main/resources/message/iWmo/WMO301.xsd</source>
+                                <source>src/main/resources/message/iWmo/WMO302.xsd</source>
+                                <source>src/main/resources/message/iWmo/WMO303.xsd</source>
+                                <source>src/main/resources/message/iWmo/WMO305.xsd</source>
+                                <source>src/main/resources/message/iWmo/WMO306.xsd</source>
+                                <source>src/main/resources/message/iWmo/WMO307.xsd</source>
+                                <source>src/main/resources/message/iWmo/WMO308.xsd</source>
+                                <source>src/main/resources/message/iWmo/WMO315.xsd</source>
+                                <source>src/main/resources/message/iWmo/WMO316.xsd</source>
+                                <source>src/main/resources/message/iJw/basisschema.xsd</source>
+                                <source>src/main/resources/message/iJw/JW301.xsd</source>
+                                <source>src/main/resources/message/iJw/JW302.xsd</source>
+                                <source>src/main/resources/message/iJw/JW303.xsd</source>
+                                <source>src/main/resources/message/iJw/JW305.xsd</source>
+                                <source>src/main/resources/message/iJw/JW306.xsd</source>
+                                <source>src/main/resources/message/iJw/JW307.xsd</source>
+                                <source>src/main/resources/message/iJw/JW308.xsd</source>
+                                <source>src/main/resources/message/iJw/JW315.xsd</source>
+                                <source>src/main/resources/message/iJw/JW316.xsd</source>
+                                <source>src/main/resources/message/iEb/basisschema.xsd</source>
+                                <source>src/main/resources/message/iEb/WMO401.xsd</source>
+                                <source>src/main/resources/message/iEb/WMO402.xsd</source>
+                                <source>src/main/resources/message/iEb/WMO403.xsd</source>
+                                <source>src/main/resources/message/iEb/WMO404.xsd</source>
                             </sources>
                             <xjbSources>
                                 <xjbSource>src/main/resources/message/istandaarden.xjb</xjbSource>

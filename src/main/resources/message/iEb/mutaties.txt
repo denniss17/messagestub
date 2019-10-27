@@ -1,0 +1,47 @@
+Mutaties XSD's iEb Release 1.0
+===============================
+Versie 1.2.0 - 3 oktober 2019
+- Alle xsd's opnieuw uitgegeven met versie 1.2.0
+  - basisschema versie 1.2.0
+    - enkele retourcodes toegevoegd
+    - BasisschemaXsdMinVersie = 1.1.0
+    - BasisschemaXsdMaxVersie = 1.2.0
+  - WMO401 en WMO403 versie 1.2.0
+    - pattern restrictie toegevoegd om vulling BerichtVersie en BerichtSubversie af te dwingen
+    - BerichtXsdMinVersie = 1.0.0
+    - BerichtXsdMaxVersie = 1.2.0
+    - BasisschemaXsdMinVersie = 1.0.0
+    - BasisschemaXsdMaxVersie = 1.2.0
+  - WMO402 en WMO404 versie 1.2.0
+    - pattern restrictie toegevoegd om vulling BerichtVersie en BerichtSubversie af te dwingen
+    - BerichtXsdMinVersie = 1.1.0
+    - BerichtXsdMaxVersie = 1.2.0
+    - BasisschemaXsdMinVersie = 1.1.0
+    - BasisschemaXsdMaxVersie = 1.2.0
+
+
+Versie 1.1.0 - 10 juli 2019
+- Alle xsd's opnieuw uitgegeven met versie 1.1.0
+  - basisschema versie 1.1.0
+    - documentatie LDT_BerichtVersie en LDT_BerichtSubversie gewijzigd
+    - enkele retourcodes toegevoegd
+    - BasisschemaXsdMinVersie = 1.1.0
+    - BasisschemaXsdMaxVersie = 1.1.0
+  - WMO401 en WMO403 versie 1.1.0
+    - documentatie van aantal elementen gewijzigd
+    - BerichtXsdMinVersie = 1.0.0
+    - BerichtXsdMaxVersie = 1.1.0
+    - BasisschemaXsdMinVersie = 1.0.0
+    - BasisschemaXsdMaxVersie = 1.1.0
+  - WMO402 en WMO404 versie 1.1.0
+    - documentatie van aantal elementen gewijzigd
+    - BerichtXsdMinVersie = 1.1.0
+    - BerichtXsdMaxVersie = 1.1.0
+    - BasisschemaXsdMinVersie = 1.1.0
+    - BasisschemaXsdMaxVersie = 1.1.0
+
+Versie 1.0.0 - 21 mei 2019
+- Alle xsd's gepubliceerd voor iEb 1.0 met versie 1.0.0
+  - basisschema.xsd
+  - WMO401/WMO402
+  - WMO403/WMO404
