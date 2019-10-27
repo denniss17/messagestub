@@ -75,6 +75,7 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
+                            <clearOutputDir>false</clearOutputDir>
                             <sources>
                                 <source>src/main/resources/message/wmo/basisschema.xsd</source>
                                 <source>src/main/resources/message/wmo/WMO301.xsd</source>
@@ -110,6 +111,7 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
+                            <clearOutputDir>false</clearOutputDir>
                             <sources>
                                 <source>src/main/resources/exchange/ggk/ggk0210/ggkberichten/ggk0210_OntvangAsynchroon_ggkberichten.wsdl</source>
                             </sources>

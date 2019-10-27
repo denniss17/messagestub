@@ -1,0 +1,18 @@
+<ns14:Bericht xmlns:ns14="http://www.istandaarden.nl/ijw/2_3/jw302/schema">
+    <ns14:Header>
+        <ns14:BerichtCode>437</ns14:BerichtCode>
+        <ns14:BerichtVersie>2</ns14:BerichtVersie>
+        <ns14:BerichtSubversie>3</ns14:BerichtSubversie>
+        <ns14:Afzender>0384</ns14:Afzender>
+        <ns14:Ontvanger>42420001</ns14:Ontvanger>
+        <ns14:BerichtIdentificatie>
+            <ns12:Identificatie xmlns:ns12="http://www.istandaarden.nl/ijw/2_3/basisschema/schema">123456789012</ns12:Identificatie>
+            <ns12:Dagtekening xmlns:ns12="http://www.istandaarden.nl/ijw/2_3/basisschema/schema">2018-07-15</ns12:Dagtekening>
+        </ns14:BerichtIdentificatie>
+        <ns14:IdentificatieRetour>9452b7eb-c87</ns14:IdentificatieRetour>
+        <ns14:DagtekeningRetour>2017-07-16</ns14:DagtekeningRetour>
+        <ns14:RetourCodes>
+            <ns14:RetourCode>8848</ns14:RetourCode>
+        </ns14:RetourCodes>
+    </ns14:Header>
+</ns14:Bericht>

@@ -5,6 +5,7 @@ import nl.dennisschroer.messagestub.MarshallUtil;
 import nl.dennisschroer.messagestub.MessageDirection;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessageService;
+import nl.dennisschroer.messagestub.message.Message;
 import nl.dennisschroer.messagestub.message.MessageReceivedEvent;
 import nl.egem.stuf.stuf0301.Bv03Bericht;
 import nl.egem.stuf.stuf0301.Fo01Bericht;
@@ -53,7 +54,9 @@ public class GgkEndpoint {
             String berichtData = bepaalMessageBody(bericht);
 
             // Publish message
-            eventPublisher.publishEvent(new MessageReceivedEvent(exchangeMessage, berichtFunctie.getMessageType(), berichtData));
+            Message message = new Message(berichtFunctie.getMessageType(), berichtData, exchangeMessage);
+            message.getMeta().setConversatieId(bericht.getStuurgegevens().getReferentienummer());
+            eventPublisher.publishEvent(new MessageReceivedEvent(message));
 
             // Create response
             Bv03Bericht response = ggkResponseGenerator.generateResponse(bericht);
@@ -82,7 +85,9 @@ public class GgkEndpoint {
             String berichtData = bepaalMessageBody(retourBericht);
 
             // Publish message
-            eventPublisher.publishEvent(new MessageReceivedEvent(exchangeMessage, berichtFunctie.getMessageType(), berichtData));
+            Message message = new Message(berichtFunctie.getMessageType(), berichtData, exchangeMessage);
+            message.getMeta().setConversatieId(retourBericht.getStuurgegevens().getReferentienummer());
+            eventPublisher.publishEvent(new MessageReceivedEvent(message));
 
             // Create response
             Bv03Bericht response = ggkResponseGenerator.generateResponse(retourBericht);

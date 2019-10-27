@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wmo302:Bericht xmlns:iwmo="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema" xmlns:wmo302="http://www.istandaarden.nl/iwmo/2_3/wmo302/schema">
+	<wmo302:Header>
+		<wmo302:BerichtCode>415</wmo302:BerichtCode>
+		<wmo302:BerichtVersie>2</wmo302:BerichtVersie>
+		<wmo302:BerichtSubversie>3</wmo302:BerichtSubversie>
+		<wmo302:Afzender>0384</wmo302:Afzender>
+		<wmo302:Ontvanger>42420001</wmo302:Ontvanger>
+		<wmo302:BerichtIdentificatie>
+			<iwmo:Identificatie>123456789012</iwmo:Identificatie>
+			<iwmo:Dagtekening>2018-07-10</iwmo:Dagtekening>
+		</wmo302:BerichtIdentificatie>
+		<wmo302:IdentificatieRetour>ZA0000000001</wmo302:IdentificatieRetour>
+		<wmo302:DagtekeningRetour>2018-07-11</wmo302:DagtekeningRetour>
+	</wmo302:Header>
+</wmo302:Bericht>

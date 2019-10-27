@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns101:Bericht xmlns:ns101="http://www.istandaarden.nl/iwmo/2_3/wmo316/schema">
+	<ns101:Header>
+		<ns101:BerichtCode>445</ns101:BerichtCode>
+		<ns101:BerichtVersie>2</ns101:BerichtVersie>
+		<ns101:BerichtSubversie>3</ns101:BerichtSubversie>
+		<ns101:Afzender>42420001</ns101:Afzender>
+		<ns101:Ontvanger>0384</ns101:Ontvanger>
+		<ns101:BerichtIdentificatie>
+			<ns91:Identificatie xmlns:ns91="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">123456789012</ns91:Identificatie>
+			<ns91:Dagtekening xmlns:ns91="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">2017-07-15</ns91:Dagtekening>
+		</ns101:BerichtIdentificatie>
+		<ns101:IdentificatieRetour>bf385732-a6f</ns101:IdentificatieRetour>
+		<ns101:DagtekeningRetour>2018-10-23</ns101:DagtekeningRetour>
+	</ns101:Header>
+</ns101:Bericht>

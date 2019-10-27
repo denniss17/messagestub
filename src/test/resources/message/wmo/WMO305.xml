@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wmo305:Bericht xmlns:iwmo="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema" xmlns:wmo305="http://www.istandaarden.nl/iwmo/2_3/wmo305/schema">
+ <wmo305:Header>
+  <wmo305:BerichtCode>418</wmo305:BerichtCode>
+  <wmo305:BerichtVersie>2</wmo305:BerichtVersie>
+  <wmo305:BerichtSubversie>3</wmo305:BerichtSubversie>
+  <wmo305:Afzender>42420001</wmo305:Afzender>
+  <wmo305:Ontvanger>0384</wmo305:Ontvanger>
+  <wmo305:BerichtIdentificatie>
+   <iwmo:Identificatie>123456789012</iwmo:Identificatie>
+   <iwmo:Dagtekening>2018-07-15</iwmo:Dagtekening>
+  </wmo305:BerichtIdentificatie>
+ </wmo305:Header>
+ <wmo305:Client>
+  <wmo305:Bsn>123456782</wmo305:Bsn>
+  <wmo305:Geboortedatum>
+   <iwmo:Datum>1970-05-12</iwmo:Datum>
+  </wmo305:Geboortedatum>
+  <wmo305:Geslacht>1</wmo305:Geslacht>
+  <wmo305:Naam>
+   <iwmo:Geslachtsnaam>
+    <iwmo:Achternaam>Vries</iwmo:Achternaam>
+    <iwmo:Voorvoegsel>de</iwmo:Voorvoegsel>
+   </iwmo:Geslachtsnaam>
+   <iwmo:Voornamen>Peter R</iwmo:Voornamen>
+   <iwmo:Voorletters>PR</iwmo:Voorletters>
+  </wmo305:Naam>
+  <wmo305:StatusAanlevering>1</wmo305:StatusAanlevering>
+  <wmo305:StartProducten>
+   <wmo305:StartProduct>
+    <wmo305:BeschikkingNummer>123</wmo305:BeschikkingNummer>
+    <wmo305:ToewijzingNummer>124</wmo305:ToewijzingNummer>
+    <wmo305:Product>
+     <iwmo:Categorie>01</iwmo:Categorie>
+     <iwmo:Code>ABCDE</iwmo:Code>
+    </wmo305:Product>
+    <wmo305:ToewijzingIngangsdatum>2018-06-01</wmo305:ToewijzingIngangsdatum>
+    <wmo305:Begindatum>2018-06-01</wmo305:Begindatum>
+    <wmo305:StatusAanlevering>1</wmo305:StatusAanlevering>
+   </wmo305:StartProduct>
+   <wmo305:StartProduct>
+    <wmo305:BeschikkingNummer>123</wmo305:BeschikkingNummer>
+    <wmo305:ToewijzingNummer>125</wmo305:ToewijzingNummer>
+    <wmo305:Product>
+     <iwmo:Categorie>02</iwmo:Categorie>
+     <iwmo:Code>BCDEF</iwmo:Code>
+    </wmo305:Product>
+    <wmo305:ToewijzingIngangsdatum>2018-06-01</wmo305:ToewijzingIngangsdatum>
+    <wmo305:Begindatum>2018-06-01</wmo305:Begindatum>
+    <wmo305:StatusAanlevering>1</wmo305:StatusAanlevering>
+   </wmo305:StartProduct>
+  </wmo305:StartProducten>
+ </wmo305:Client>
+</wmo305:Bericht>

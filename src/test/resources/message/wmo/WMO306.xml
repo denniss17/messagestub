@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wmo306:Bericht xmlns:iwmo="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema" xmlns:wmo306="http://www.istandaarden.nl/iwmo/2_3/wmo306/schema">
+	<wmo306:Header>
+		<wmo306:BerichtCode>419</wmo306:BerichtCode>
+		<wmo306:BerichtVersie>2</wmo306:BerichtVersie>
+		<wmo306:BerichtSubversie>3</wmo306:BerichtSubversie>
+		<wmo306:Afzender>42420001</wmo306:Afzender>
+		<wmo306:Ontvanger>0384</wmo306:Ontvanger>
+		<wmo306:BerichtIdentificatie>
+			<iwmo:Identificatie>123456789012</iwmo:Identificatie>
+			<iwmo:Dagtekening>2018-07-15</iwmo:Dagtekening>
+		</wmo306:BerichtIdentificatie>
+		<wmo306:IdentificatieRetour>GEM000000001</wmo306:IdentificatieRetour>
+		<wmo306:DagtekeningRetour>2018-07-16</wmo306:DagtekeningRetour>
+	</wmo306:Header>
+</wmo306:Bericht>

@@ -2,13 +2,22 @@ package nl.dennisschroer.messagestub.message;
 
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @CommonsLog
 @Component
 public class MessageListener {
+    private final MessageService messageService;
+
+    public MessageListener(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    @Order(1000) // Order zodat deze altijd als laatste gaat
     @EventListener
     public void onMessageReceived(MessageReceivedEvent event) {
-        log.info("Message ontvangen vanaf " + event.getExchangeMessage().getExchangeType() + " van type " + event.getMessageType() + ": " + event.getBody());
+        messageService.saveMessage(event.getMessage());
+        log.info("Message ontvangen vanaf " + event.getMessage().getExchangeMessage().getExchangeType() + ": " + event.getMessage().toString());
     }
 }

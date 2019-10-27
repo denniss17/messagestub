@@ -3,11 +3,9 @@ package nl.dennisschroer.messagestub.exchange;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import nl.dennisschroer.messagestub.MessageDirection;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +15,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -24,7 +23,6 @@ import java.util.Date;
  */
 @Data
 @Entity
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class)
 public class ExchangeMessage {
@@ -35,25 +33,25 @@ public class ExchangeMessage {
     /**
      * Identificatie van de exchange (bijv GGK) via welke dit bericht is ontvangen of verstuurd.
      */
-    @NonNull
+    @NotNull
     private String exchangeType;
 
     /**
      * Het type bericht binnen de exchange wat is ontvangen of verstuurd, bijvoorbeeld "Di01" of "Fo03"
      */
-    @NonNull
+    @NotNull
     private String messageType;
 
     /**
      * Geeft aan of het om een ontvangen of verzonden bericht gaat.
      */
-    @NonNull
+    @NotNull
     @Enumerated(EnumType.STRING)
     private MessageDirection direction;
 
     /**
      * Het adres van de andere partij.
-     *
+     * <p>
      * In het geval van een incoming bericht: het ipadres van de client
      * In het geval van een uitgaand bericht: het adres waar het bericht heen is gestuurd.
      */
@@ -62,7 +60,7 @@ public class ExchangeMessage {
     /**
      * De raw content van het bericht, bijvoorbeeld XML.
      */
-    @Column(length = 2048)
+    @Column(length = 16384)
     private String body;
 
     /**
@@ -73,4 +71,10 @@ public class ExchangeMessage {
 
     @CreatedDate
     private Date timestamp;
+
+    public ExchangeMessage(String exchangeType, String messageType, MessageDirection direction) {
+        this.exchangeType = exchangeType;
+        this.messageType = messageType;
+        this.direction = direction;
+    }
 }

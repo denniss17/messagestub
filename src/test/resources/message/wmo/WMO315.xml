@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:Bericht xmlns:ns1="http://www.istandaarden.nl/iwmo/2_3/wmo315/schema" >
+	<ns1:Header>
+		<ns1:BerichtCode>444</ns1:BerichtCode>
+		<ns1:BerichtVersie>2</ns1:BerichtVersie>
+		<ns1:BerichtSubversie>3</ns1:BerichtSubversie>
+		<ns1:Afzender>42420001</ns1:Afzender>
+		<ns1:Ontvanger>0384</ns1:Ontvanger>
+		<ns1:BerichtIdentificatie>
+			<ns2:Identificatie xmlns:ns2="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">123456789012</ns2:Identificatie>
+			<ns3:Dagtekening xmlns:ns3="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">2017-07-15</ns3:Dagtekening>
+		</ns1:BerichtIdentificatie>
+	</ns1:Header>
+	<ns1:Client>
+		<ns1:Bsn>123456782</ns1:Bsn>
+		<ns1:Geboortedatum>
+			<ns4:Datum xmlns:ns4="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">1972-07-16</ns4:Datum>
+		</ns1:Geboortedatum>
+		<ns1:Geslacht>1</ns1:Geslacht>
+		<ns1:Naam>
+			<ns6:Geslachtsnaam xmlns:ns6="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">
+				<ns6:Achternaam>Vries</ns6:Achternaam>
+				<ns6:Voorvoegsel>de</ns6:Voorvoegsel>
+			</ns6:Geslachtsnaam>
+			<ns7:Voornamen xmlns:ns7="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">Peter R</ns7:Voornamen>
+			<ns8:Voorletters xmlns:ns8="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">PR</ns8:Voorletters>
+		</ns1:Naam>
+		<ns1:Commentaar>Commentaar client</ns1:Commentaar>
+		<ns1:AangevraagdeProducten>
+			<ns1:AangevraagdProduct>
+				<ns1:ReferentieAanbieder>42420001</ns1:ReferentieAanbieder>
+				<ns1:BeschikkingNummer>1234</ns1:BeschikkingNummer>
+				<ns1:Product>
+					<ns9:Categorie xmlns:ns9="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">01</ns9:Categorie>
+					<ns10:Code xmlns:ns10="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">ABCDE</ns10:Code>
+				</ns1:Product>
+				<ns1:BeschikkingIngangsdatum>2017-06-01</ns1:BeschikkingIngangsdatum>
+				<ns1:ToewijzingIngangsdatum>2017-06-01</ns1:ToewijzingIngangsdatum>
+				<ns1:ToewijzingEinddatum>2017-06-30</ns1:ToewijzingEinddatum>
+				<ns1:Omvang>
+					<ns11:Volume xmlns:ns11="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">4</ns11:Volume>
+					<ns12:Eenheid xmlns:ns12="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">14</ns12:Eenheid>
+					<ns13:Frequentie xmlns:ns13="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">4</ns13:Frequentie>
+				</ns1:Omvang>
+				<ns1:Verwijzer>
+					<ns14:Type xmlns:ns14="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">04</ns14:Type>
+					<ns15:Naam xmlns:ns15="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">Verwijzer Naam</ns15:Naam>
+				</ns1:Verwijzer>
+				<ns1:Raamcontract>1</ns1:Raamcontract>
+				<ns1:Commentaar>Commentaar Aangevraagd Product</ns1:Commentaar>
+			</ns1:AangevraagdProduct>
+			<ns1:AangevraagdProduct>
+				<ns1:ReferentieAanbieder>42420001</ns1:ReferentieAanbieder>
+				<ns1:BeschikkingNummer>1234</ns1:BeschikkingNummer>
+				<ns1:Product>
+					<ns16:Categorie xmlns:ns16="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">02</ns16:Categorie>
+					<ns17:Code xmlns:ns17="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">BCDEF</ns17:Code>
+				</ns1:Product>
+				<ns1:BeschikkingIngangsdatum>2017-06-01</ns1:BeschikkingIngangsdatum>
+				<ns1:ToewijzingIngangsdatum>2017-06-01</ns1:ToewijzingIngangsdatum>
+				<ns1:ToewijzingEinddatum>2017-06-30</ns1:ToewijzingEinddatum>
+				<ns1:Omvang>
+					<ns18:Volume xmlns:ns18="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">4</ns18:Volume>
+					<ns19:Eenheid xmlns:ns19="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">14</ns19:Eenheid>
+					<ns20:Frequentie xmlns:ns20="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">4</ns20:Frequentie>
+				</ns1:Omvang>
+				<ns1:Verwijzer>
+					<ns21:Type xmlns:ns21="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">04</ns21:Type>
+					<ns22:Naam xmlns:ns22="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema">Verwijzer Naam</ns22:Naam>
+				</ns1:Verwijzer>
+				<ns1:Raamcontract>1</ns1:Raamcontract>
+				<ns1:Commentaar>Commentaat Aangevraagd Product 2</ns1:Commentaar>
+			</ns1:AangevraagdProduct>
+		</ns1:AangevraagdeProducten>
+	</ns1:Client>
+</ns1:Bericht>

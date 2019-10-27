@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wmo307:Bericht xmlns:iwmo="http://www.istandaarden.nl/iwmo/2_3/basisschema/schema" xmlns:wmo307="http://www.istandaarden.nl/iwmo/2_3/wmo307/schema">
+<wmo307:Header>
+      <wmo307:BerichtCode>420</wmo307:BerichtCode>
+      <wmo307:BerichtVersie>2</wmo307:BerichtVersie>
+      <wmo307:BerichtSubversie>3</wmo307:BerichtSubversie>
+      <wmo307:Afzender>42420001</wmo307:Afzender>
+      <wmo307:Ontvanger>0384</wmo307:Ontvanger>
+      <wmo307:BerichtIdentificatie>
+         <iwmo:Identificatie>123456789012</iwmo:Identificatie>
+         <iwmo:Dagtekening>2018-07-15</iwmo:Dagtekening>
+      </wmo307:BerichtIdentificatie>
+   </wmo307:Header>
+   <wmo307:Client>
+      <wmo307:Bsn>123456782</wmo307:Bsn>
+      <wmo307:Geboortedatum>
+         <iwmo:Datum>1968-02-09</iwmo:Datum>
+      </wmo307:Geboortedatum>
+      <wmo307:Geslacht>1</wmo307:Geslacht>
+      <wmo307:Naam>
+         <iwmo:Geslachtsnaam>
+            <iwmo:Achternaam>Vries</iwmo:Achternaam>
+            <iwmo:Voorvoegsel>de</iwmo:Voorvoegsel>
+         </iwmo:Geslachtsnaam>
+         <iwmo:Voornamen>Peter R</iwmo:Voornamen>
+         <iwmo:Voorletters>PR</iwmo:Voorletters>
+      </wmo307:Naam>
+      <wmo307:StatusAanlevering>1</wmo307:StatusAanlevering>
+      <wmo307:StopProducten>
+         <wmo307:StopProduct>
+            <wmo307:BeschikkingNummer>123</wmo307:BeschikkingNummer>
+            <wmo307:ToewijzingNummer>1023</wmo307:ToewijzingNummer>
+            <wmo307:Product>
+               <iwmo:Categorie>01</iwmo:Categorie>
+               <iwmo:Code>ABCDE</iwmo:Code>
+            </wmo307:Product>
+            <wmo307:ToewijzingIngangsdatum>2018-06-01</wmo307:ToewijzingIngangsdatum>
+            <wmo307:Begindatum>2018-06-01</wmo307:Begindatum>
+            <wmo307:RedenBeeindiging>20</wmo307:RedenBeeindiging>
+            <wmo307:Einddatum>2018-07-14</wmo307:Einddatum>
+            <wmo307:StatusAanlevering>1</wmo307:StatusAanlevering>
+         </wmo307:StopProduct>
+         <wmo307:StopProduct>
+            <wmo307:BeschikkingNummer>123</wmo307:BeschikkingNummer>
+            <wmo307:ToewijzingNummer>1024</wmo307:ToewijzingNummer>
+            <wmo307:Product>
+               <iwmo:Categorie>02</iwmo:Categorie>
+               <iwmo:Code>BCDEF</iwmo:Code>
+            </wmo307:Product>
+            <wmo307:ToewijzingIngangsdatum>2018-06-01</wmo307:ToewijzingIngangsdatum>
+            <wmo307:Begindatum>2018-06-01</wmo307:Begindatum>
+            <wmo307:RedenBeeindiging>20</wmo307:RedenBeeindiging>
+            <wmo307:Einddatum>2018-07-14</wmo307:Einddatum>
+            <wmo307:StatusAanlevering>1</wmo307:StatusAanlevering>
+         </wmo307:StopProduct>
+      </wmo307:StopProducten>
+   </wmo307:Client>
+</wmo307:Bericht>
