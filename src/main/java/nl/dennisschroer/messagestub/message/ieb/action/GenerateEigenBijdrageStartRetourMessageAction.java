@@ -27,7 +27,6 @@ public class GenerateEigenBijdrageStartRetourMessageAction implements MessageAct
     @Getter
     private final String description = "Genereer een retourbericht (402) op een eigen bijdrage startbericht (401)";
 
-
     public GenerateEigenBijdrageStartRetourMessageAction(ApplicationEventPublisher eventPublisher) {
         this.eventPublisher = eventPublisher;
     }
@@ -65,9 +64,7 @@ public class GenerateEigenBijdrageStartRetourMessageAction implements MessageAct
 
         eventPublisher.publishEvent(new MessageGeneratedEvent(result));
 
-        MessageActionResult actionResult = new MessageActionResult();
-        actionResult.addGeneratedEntity("message", result.getId());
-        return actionResult;
+        return new MessageActionResult(result);
     }
 
     private String generateIdentificatieRetour(WMO401Bericht bericht) {

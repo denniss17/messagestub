@@ -1,6 +1,5 @@
 package nl.dennisschroer.messagestub.message.action;
 
-import lombok.Data;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -8,15 +7,13 @@ import java.util.List;
 
 public class MessageActionResult {
     @Getter
-    private List<GeneratedEntityReference> generatedEntities = new ArrayList<>();
+    private List<Object> generatedEntities = new ArrayList<>();
 
-    public void addGeneratedEntity(String type, Long id) {
-        this.generatedEntities.add(new GeneratedEntityReference(type, id));
+    public MessageActionResult(Object generatedEntity) {
+        this.generatedEntities.add(generatedEntity);
     }
 
-    @Data
-    static class GeneratedEntityReference {
-        private final String type;
-        private final Long id;
+    public void addGeneratedEntity(Object entity) {
+        this.generatedEntities.add(entity);
     }
 }

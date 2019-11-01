@@ -69,10 +69,7 @@ public abstract class AbstractGenerateDu01MessageAction implements MessageAction
         exchangeMessage.setMessage(message);
         exchangeMessage = exchangeMessageService.saveExchangeMessage(exchangeMessage);
 
-        MessageActionResult result = new MessageActionResult();
-        result.addGeneratedEntity(ExchangeMessage.TYPE, exchangeMessage.getId());
-
-        return result;
+        return new MessageActionResult(exchangeMessage);
     }
 
     protected String getBerichtFunctie(Message message) {
