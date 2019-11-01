@@ -24,5 +24,12 @@ public interface GgkResponseGenerator {
      */
     Bv03Bericht generateResponse(Fo01Bericht foutBericht);
 
+    /**
+     * Genereer een {@link Fo03Bericht} voor een exceptie.
+     *
+     * @param stuurgegevens De stuurgegevens van het inkomende bericht.
+     * @param exception     De gegooide exceptie.
+     * @return Een nieuw {@link Fo03Bericht} welke teruggestuurd kan worden als antwoord.
+     */
     Fo03Bericht generateFo03Bericht(@Nullable Stuurgegevens stuurgegevens, Exception exception);
 }

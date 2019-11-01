@@ -12,28 +12,29 @@ import nl.istandaarden.generated.ieb.wmo402.WMO402Bericht;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
 import javax.xml.datatype.DatatypeFactory;
 import java.time.ZonedDateTime;
-import java.util.Collections;
 import java.util.GregorianCalendar;
-import java.util.Set;
 
 @Component
 public class GenerateEigenBijdrageStartRetourMessageAction implements MessageAction {
     private final ApplicationEventPublisher eventPublisher;
 
     @Getter
-    private final Set<String> applicableMessageTypes = Collections.singleton("WMO401");
-
-    @Getter
     private final String name = "generateEbStartRetour";
 
     @Getter
-    private final String description = "Genereer een retourbericht (402) op een eigen bijdrage startbericht";
+    private final String description = "Genereer een retourbericht (402) op een eigen bijdrage startbericht (401)";
 
 
     public GenerateEigenBijdrageStartRetourMessageAction(ApplicationEventPublisher eventPublisher) {
         this.eventPublisher = eventPublisher;
+    }
+
+    @Override
+    public boolean isApplicableToMessageType(@NotNull String messageType) {
+        return messageType.equals("WMO401");
     }
 
     @Override

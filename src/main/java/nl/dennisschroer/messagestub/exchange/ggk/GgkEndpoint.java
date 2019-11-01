@@ -25,6 +25,7 @@ import org.springframework.ws.transport.context.TransportContextHolder;
 import org.springframework.ws.transport.http.HttpServletConnection;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.JAXBException;
 
 @Endpoint
@@ -32,7 +33,9 @@ import javax.xml.bind.JAXBException;
 @CommonsLog
 public class GgkEndpoint {
     private final ExchangeMessageService exchangeMessageService;
+
     private final GgkResponseGenerator ggkResponseGenerator;
+
     private final ApplicationEventPublisher eventPublisher;
 
     public GgkEndpoint(ExchangeMessageService exchangeMessageService, GgkResponseGenerator ggkResponseGenerator, ApplicationEventPublisher eventPublisher) {
@@ -49,12 +52,8 @@ public class GgkEndpoint {
             ExchangeMessage exchangeMessage = saveRequest("Di01", MarshallUtil.marshall(bericht));
             log.info("GGK: Di01 ontvangen: " + exchangeMessage.toString());
 
-            // Extract message
-            GgkBerichtFunctie berichtFunctie = bepaalBerichtFunctie(bericht);
-            String berichtData = bepaalMessageBody(bericht);
-
             // Publish message
-            Message message = new Message(berichtFunctie.getMessageType(), berichtData, exchangeMessage);
+            Message message = new Message(bepaalMessageType(bericht), bepaalMessageBody(bericht), exchangeMessage);
             message.getMeta().setConversatieId(bericht.getStuurgegevens().getReferentienummer());
             eventPublisher.publishEvent(new MessageReceivedEvent(message));
 
@@ -80,12 +79,8 @@ public class GgkEndpoint {
             ExchangeMessage exchangeMessage = saveRequest("Du01", MarshallUtil.marshall(retourBericht));
             log.info("GGK: Du01 ontvangen: " + exchangeMessage.toString());
 
-            // Extract message
-            GgkBerichtFunctie berichtFunctie = bepaalBerichtFunctie(retourBericht);
-            String berichtData = bepaalMessageBody(retourBericht);
-
             // Publish message
-            Message message = new Message(berichtFunctie.getMessageType(), berichtData, exchangeMessage);
+            Message message = new Message(bepaalMessageType(retourBericht), bepaalMessageBody(retourBericht), exchangeMessage);
             message.getMeta().setConversatieId(retourBericht.getStuurgegevens().getReferentienummer());
             eventPublisher.publishEvent(new MessageReceivedEvent(message));
 
@@ -125,35 +120,38 @@ public class GgkEndpoint {
         }
     }
 
-    private GgkBerichtFunctie bepaalBerichtFunctie(EnvelopHeenberichtGgkDi01 bericht) throws GgkException {
-        return bepaalBerichtFunctie(bericht.getStuurgegevens());
+    @NotNull
+    private String bepaalMessageType(EnvelopHeenberichtGgkDi01 bericht) {
+        return bepaalMessageType(bericht.getStuurgegevens());
     }
 
-    private GgkBerichtFunctie bepaalBerichtFunctie(EnvelopRetourberichtGgkDu01 retourBericht) throws GgkException {
-        return bepaalBerichtFunctie(retourBericht.getStuurgegevens());
+    @NotNull
+    private String bepaalMessageType(EnvelopRetourberichtGgkDu01 retourBericht) {
+        return bepaalMessageType(retourBericht.getStuurgegevens());
     }
 
-    private GgkBerichtFunctie bepaalBerichtFunctie(Stuurgegevens stuurgegevens) throws GgkException {
-        try {
-            return GgkBerichtFunctie.valueOf(stuurgegevens.getFunctie());
-        } catch (IllegalArgumentException e) {
-            throw new GgkException(e);
-        }
+    @NotNull
+    private String bepaalMessageType(Stuurgegevens stuurgegevens) {
+        return stuurgegevens.getFunctie();
     }
 
+    @NotNull
     private String bepaalMessageBody(EnvelopHeenberichtGgkDi01 bericht) {
         return bepaalMessageBody(bericht.getParameters());
     }
 
+    @NotNull
     private String bepaalMessageBody(EnvelopRetourberichtGgkDu01 retourBericht) {
         return bepaalMessageBody(retourBericht.getParameters());
     }
 
+    @NotNull
     private String bepaalMessageBody(ParametersGgkberichten parametersGgkberichten) {
         byte[] body = parametersGgkberichten.getBericht().getXmlBestand();
         return new String(body == null ? parametersGgkberichten.getBericht().getTekstBestand().getValue() : body);
     }
 
+    @NotNull
     private ExchangeMessage saveRequest(String messageType, String body) {
         ExchangeMessage exchangeMessage = new ExchangeMessage("GGK", messageType, MessageDirection.IN);
         exchangeMessage.setBody(body);
@@ -161,6 +159,7 @@ public class GgkEndpoint {
         return exchangeMessageService.saveExchangeMessage(exchangeMessage);
     }
 
+    @NotNull
     private ExchangeMessage saveResponse(ExchangeMessage requestMessage, String messageType, String body) {
         // Save response
         ExchangeMessage responseExchangeMessage = new ExchangeMessage("GGK", messageType, MessageDirection.OUT);
