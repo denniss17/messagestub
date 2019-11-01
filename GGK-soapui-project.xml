@@ -2799,7 +2799,7 @@
                <!--Optional:-->
                <stuf:gebruiker>?</stuf:gebruiker>
             </stuf:ontvanger>
-            <stuf:referentienummer>?</stuf:referentienummer>
+            <stuf:referentienummer>536c57b0-81dd-4a2a-990b-783fab8f246c</stuf:referentienummer>
             <stuf:tijdstipBericht>?</stuf:tijdstipBericht>
             <stuf:functie>WMO401</stuf:functie>
          </ggk:stuurgegevens>

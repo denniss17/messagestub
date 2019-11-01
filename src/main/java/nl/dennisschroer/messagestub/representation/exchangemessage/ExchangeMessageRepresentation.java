@@ -1,4 +1,4 @@
-package nl.dennisschroer.messagestub.representation;
+package nl.dennisschroer.messagestub.representation.exchangemessage;
 
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
 import org.springframework.hateoas.EntityModel;
@@ -10,6 +10,5 @@ import org.springframework.hateoas.EntityModel;
 public class ExchangeMessageRepresentation extends EntityModel<ExchangeMessage> {
     public ExchangeMessageRepresentation(ExchangeMessage exchangeMessage) {
         super(exchangeMessage);
-
     }
 }

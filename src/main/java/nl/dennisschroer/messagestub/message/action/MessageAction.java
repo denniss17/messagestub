@@ -5,7 +5,7 @@ import nl.dennisschroer.messagestub.message.Message;
 import javax.validation.constraints.NotNull;
 
 /**
- * Op en ontvangen of gegenereerd bericht kan een actie worden uitgevoerd. Dit kan varieren van het verzenden van dit bericht
+ * Op en ontvangen of gegenereerd {@link Message} kan een actie worden uitgevoerd. Dit kan varieren van het verzenden van dit bericht
  * via een bepaalde exchange tot het genereren van een response op dit bericht.
  * <p>
  * Een {@link MessageAction} definieert zo'n actie. Een actie is alleen toepasbaar op een berichtbype,

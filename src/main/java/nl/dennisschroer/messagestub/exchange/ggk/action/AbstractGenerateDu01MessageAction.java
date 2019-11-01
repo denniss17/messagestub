@@ -1,5 +1,6 @@
 package nl.dennisschroer.messagestub.exchange.ggk.action;
 
+import lombok.extern.apachecommons.CommonsLog;
 import nl.dennisschroer.messagestub.MarshallUtil;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessageService;
@@ -23,6 +24,7 @@ import java.util.UUID;
  * @author Dennis Schroer
  * @since 01 Nov 2019
  */
+@CommonsLog
 public abstract class AbstractGenerateDu01MessageAction implements MessageAction {
     private final ObjectFactory ggkObjectFactory = new ObjectFactory();
 
@@ -53,7 +55,7 @@ public abstract class AbstractGenerateDu01MessageAction implements MessageAction
         du01.getStuurgegevens().setZender(createZender());
         du01.getStuurgegevens().setOntvanger(createOntvanger(message));
         du01.getStuurgegevens().setReferentienummer(UUID.randomUUID().toString());
-        du01.getStuurgegevens().setCrossRefnummer(message.getMeta().getConversatieId());
+        du01.getStuurgegevens().setCrossRefnummer(message.getMeta().getReferentienummer());
         du01.getStuurgegevens().setTijdstipBericht(GgkConstants.DATE_TIME_FORMATTER.format(LocalDateTime.now()));
         du01.getStuurgegevens().setFunctie(getBerichtFunctie(message));
 
@@ -68,6 +70,8 @@ public abstract class AbstractGenerateDu01MessageAction implements MessageAction
         exchangeMessage.setBody(MarshallUtil.marshall(du01));
         exchangeMessage.setMessage(message);
         exchangeMessage = exchangeMessageService.saveExchangeMessage(exchangeMessage);
+
+        log.info("GGK: Du01 gegenereerd: " + exchangeMessage);
 
         return new MessageActionResult(exchangeMessage);
     }

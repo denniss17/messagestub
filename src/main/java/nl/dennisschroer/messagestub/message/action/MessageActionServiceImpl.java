@@ -11,8 +11,11 @@ public class MessageActionServiceImpl implements MessageActionService {
 
     private final List<MessageAction> messageActions;
 
-    public MessageActionServiceImpl(List<MessageAction> messageActions) {
+    private final List<ExchangeMessageAction> exchangeMessageActions;
+
+    public MessageActionServiceImpl(List<MessageAction> messageActions, List<ExchangeMessageAction> exchangeMessageActions) {
         this.messageActions = messageActions;
+        this.exchangeMessageActions = exchangeMessageActions;
     }
 
     @Override
@@ -26,6 +29,21 @@ public class MessageActionServiceImpl implements MessageActionService {
     @Override
     public List<MessageAction> getActionsForMessageType(String messageType) {
         return messageActions.stream()
+                .filter(action -> action.isApplicableToMessageType(messageType))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<ExchangeMessageAction> getExchangeAction(String actionName, String messageType) {
+        return exchangeMessageActions.stream()
+                .filter(action -> action.getName().equals(actionName))
+                .filter(action -> action.isApplicableToMessageType(messageType))
+                .findFirst();
+    }
+
+    @Override
+    public List<ExchangeMessageAction> getActionsForExchangeMessageType(String messageType) {
+        return exchangeMessageActions.stream()
                 .filter(action -> action.isApplicableToMessageType(messageType))
                 .collect(Collectors.toList());
     }

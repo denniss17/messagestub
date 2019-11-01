@@ -1,11 +1,10 @@
-package nl.dennisschroer.messagestub.representation;
+package nl.dennisschroer.messagestub.representation.action;
 
 import nl.dennisschroer.messagestub.controller.ExchangeMessageController;
 import nl.dennisschroer.messagestub.controller.MessageController;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
 import nl.dennisschroer.messagestub.message.Message;
 import nl.dennisschroer.messagestub.message.action.MessageActionResult;
-import nl.dennisschroer.messagestub.representation.action.MessageActionResultRepresentation;
 import org.springframework.stereotype.Service;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -20,6 +19,8 @@ public class MessageActionResultRepresentationMapperImpl implements MessageActio
     @Override
     public MessageActionResultRepresentation toRepresentation(MessageActionResult messageActionResult) {
         MessageActionResultRepresentation representation = new MessageActionResultRepresentation();
+        representation.setError(messageActionResult.getError());
+        representation.setSuccess(messageActionResult.isSuccess());
 
         messageActionResult.getGeneratedEntities().forEach(generatedEntity -> {
             if (generatedEntity instanceof Message) {

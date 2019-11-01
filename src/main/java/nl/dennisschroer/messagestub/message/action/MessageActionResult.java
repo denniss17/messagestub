@@ -1,19 +1,23 @@
 package nl.dennisschroer.messagestub.message.action;
 
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class MessageActionResult {
-    @Getter
     private List<Object> generatedEntities = new ArrayList<>();
+
+    private String error;
 
     public MessageActionResult(Object generatedEntity) {
         this.generatedEntities.add(generatedEntity);
     }
 
-    public void addGeneratedEntity(Object entity) {
-        this.generatedEntities.add(entity);
+    public boolean isSuccess() {
+        return error == null;
     }
 }

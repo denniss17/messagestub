@@ -25,7 +25,7 @@ import java.util.List;
 
 @Data
 @Entity
-@ToString(exclude = "incomingExchangeMessage")
+@ToString(exclude = "exchangeMessages")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class)
 public class Message {
@@ -91,7 +91,7 @@ public class Message {
         private Integer beschikkingsnummer;
 
         @Nullable
-        private String conversatieId;
+        private String referentienummer;
 
         /**
          * Startnummer uit iEb (eigen bijdrage).

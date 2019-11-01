@@ -1,8 +1,9 @@
-package nl.dennisschroer.messagestub.representation;
+package nl.dennisschroer.messagestub.representation.exchangemessage;
 
 import nl.dennisschroer.messagestub.controller.ExchangeMessageController;
 import nl.dennisschroer.messagestub.controller.MessageController;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
+import nl.dennisschroer.messagestub.message.action.MessageActionService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,13 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
  */
 @Service
 public class ExchangeMessageRepresentationMapperImpl implements ExchangeMessageRepresentationMapper {
+
+    private final MessageActionService messageActionService;
+
+    public ExchangeMessageRepresentationMapperImpl(MessageActionService messageActionService) {
+        this.messageActionService = messageActionService;
+    }
+
     @Override
     public ExchangeMessageRepresentation toRepresentation(ExchangeMessage exchangeMessage) {
         ExchangeMessageRepresentation representation = new ExchangeMessageRepresentation(exchangeMessage);
@@ -33,6 +41,15 @@ public class ExchangeMessageRepresentationMapperImpl implements ExchangeMessageR
         if (exchangeMessage.getResponseMessage() != null) {
             representation.add(linkTo(methodOn(ExchangeMessageController.class).getExchangeMessage(exchangeMessage.getResponseMessage().getId())).withRel("response"));
         }
+
+        // Refs to actions
+        messageActionService.getActionsForExchangeMessageType(exchangeMessage.getMessageType()).forEach(messageAction -> {
+            representation.add(linkTo(methodOn(ExchangeMessageController.class).executeAction(exchangeMessage.getId(), messageAction.getName()))
+                    .withRel(messageAction.getName())
+                    .withTitle(messageAction.getDescription())
+                    .withType("action")
+            );
+        });
 
         return representation;
     }

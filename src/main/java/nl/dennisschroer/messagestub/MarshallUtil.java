@@ -38,8 +38,15 @@ public class MarshallUtil {
      */
     @SuppressWarnings("unchecked")
     public static <T> T unmarshall(String content, Class<T> type) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(type.getPackage().getName());
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        Unmarshaller jaxbUnmarshaller = unmarshaller(type);
         return ((JAXBElement<T>) jaxbUnmarshaller.unmarshal(new StringReader(content))).getValue();
+    }
+
+    /**
+     * Geeft de {@link Unmarshaller} waarmee het gegeven type ge-unmarshalled kan worden.
+     */
+    public static Unmarshaller unmarshaller(Class<?> type) throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(type.getPackage().getName());
+        return jaxbContext.createUnmarshaller();
     }
 }

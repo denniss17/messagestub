@@ -1,4 +1,4 @@
-package nl.dennisschroer.messagestub.representation;
+package nl.dennisschroer.messagestub.representation.exchangemessage;
 
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
 

@@ -45,7 +45,7 @@ public class GgkEndpoint {
     }
 
     @ResponsePayload
-    @SoapAction("http://www.stufstandaarden.nl/koppelvlak/ggk0210/ggk_Di01")
+    @SoapAction(GgkConstants.SOAP_ACTION_DI01)
     public Bv03Bericht postDi01(@RequestPayload EnvelopHeenberichtGgkDi01 bericht) throws GgkException {
         try {
             // Save request
@@ -54,7 +54,7 @@ public class GgkEndpoint {
 
             // Publish message
             Message message = new Message(bepaalMessageType(bericht), bepaalMessageBody(bericht));
-            message.getMeta().setConversatieId(bericht.getStuurgegevens().getReferentienummer());
+            message.getMeta().setReferentienummer(bericht.getStuurgegevens().getReferentienummer());
             message.getMeta().setApplicatieNaam(bericht.getStuurgegevens().getZender().getApplicatie());
             eventPublisher.publishEvent(new MessageReceivedEvent(message));
 
@@ -77,7 +77,7 @@ public class GgkEndpoint {
     }
 
     @ResponsePayload
-    @SoapAction("http://www.stufstandaarden.nl/koppelvlak/ggk0210/ggk_Du01")
+    @SoapAction(GgkConstants.SOAP_ACTION_DU01)
     public Bv03Bericht postDu01(@RequestPayload EnvelopRetourberichtGgkDu01 retourBericht) throws GgkException {
         try {
             // Save request
@@ -86,7 +86,7 @@ public class GgkEndpoint {
 
             // Publish message
             Message message = new Message(bepaalMessageType(retourBericht), bepaalMessageBody(retourBericht));
-            message.getMeta().setConversatieId(retourBericht.getStuurgegevens().getReferentienummer());
+            message.getMeta().setReferentienummer(retourBericht.getStuurgegevens().getReferentienummer());
             message.getMeta().setApplicatieNaam(retourBericht.getStuurgegevens().getZender().getApplicatie());
             eventPublisher.publishEvent(new MessageReceivedEvent(message));
 
@@ -109,7 +109,7 @@ public class GgkEndpoint {
     }
 
     @ResponsePayload
-    @SoapAction("http://www.egem.nl/StUF/StUF0301/Fo01")
+    @SoapAction(GgkConstants.SOAP_ACTION_FO01)
     public Bv03Bericht postFo01(@RequestPayload Fo01Bericht foutBericht) throws GgkException {
         try {
             // Save request

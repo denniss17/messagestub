@@ -1,5 +1,6 @@
 package nl.dennisschroer.messagestub.exchange.ggk.action;
 
+import lombok.extern.apachecommons.CommonsLog;
 import nl.dennisschroer.messagestub.MarshallUtil;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessageService;
@@ -23,6 +24,7 @@ import java.util.UUID;
  * @author Dennis Schroer
  * @since 01 Nov 2019
  */
+@CommonsLog
 public abstract class AbstractGenerateDi01MessageAction implements MessageAction {
     private final ObjectFactory ggkObjectFactory = new ObjectFactory();
 
@@ -67,6 +69,8 @@ public abstract class AbstractGenerateDi01MessageAction implements MessageAction
         exchangeMessage.setBody(MarshallUtil.marshall(di01));
         exchangeMessage.setMessage(message);
         exchangeMessage = exchangeMessageService.saveExchangeMessage(exchangeMessage);
+
+        log.info("GGK: Di01 gegenereerd: " + exchangeMessage);
 
         return new MessageActionResult(exchangeMessage);
     }

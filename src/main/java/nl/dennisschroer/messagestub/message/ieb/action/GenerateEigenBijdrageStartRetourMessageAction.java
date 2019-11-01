@@ -61,6 +61,9 @@ public class GenerateEigenBijdrageStartRetourMessageAction implements MessageAct
         // Vul metadata
         result.getMeta().setBsn(message.getMeta().getBsn());
         result.getMeta().setStartnummer(message.getMeta().getStartnummer());
+        result.getMeta().setGemeenteCode(message.getMeta().getGemeenteCode());
+        result.getMeta().setApplicatieNaam(message.getMeta().getApplicatieNaam());
+        result.getMeta().setReferentienummer(message.getMeta().getReferentienummer());
 
         eventPublisher.publishEvent(new MessageGeneratedEvent(result));
 
