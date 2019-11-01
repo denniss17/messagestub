@@ -66,6 +66,7 @@ public abstract class AbstractGenerateDu01MessageAction implements MessageAction
 
         ExchangeMessage exchangeMessage = new ExchangeMessage("GGK", "Du01", MessageDirection.OUT);
         exchangeMessage.setBody(MarshallUtil.marshall(du01));
+        exchangeMessage.setMessage(message);
         exchangeMessage = exchangeMessageService.saveExchangeMessage(exchangeMessage);
 
         MessageActionResult result = new MessageActionResult();

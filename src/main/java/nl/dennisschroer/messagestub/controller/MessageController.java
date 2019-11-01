@@ -6,6 +6,9 @@ import nl.dennisschroer.messagestub.message.MessageService;
 import nl.dennisschroer.messagestub.message.action.MessageAction;
 import nl.dennisschroer.messagestub.message.action.MessageActionResult;
 import nl.dennisschroer.messagestub.message.action.MessageActionService;
+import nl.dennisschroer.messagestub.representation.MessageRepresentation;
+import nl.dennisschroer.messagestub.representation.MessageRepresentationMapper;
+import nl.dennisschroer.messagestub.representation.MessagesRepresentation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -16,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
 
 @Controller
 @CommonsLog
@@ -26,21 +28,25 @@ public class MessageController {
 
     private final MessageActionService messageActionService;
 
-    public MessageController(MessageService messageService, MessageActionService messageActionService) {
+    private final MessageRepresentationMapper messageRepresentationMapper;
+
+    public MessageController(MessageService messageService, MessageActionService messageActionService, MessageRepresentationMapper messageRepresentationMapper) {
         this.messageService = messageService;
         this.messageActionService = messageActionService;
+        this.messageRepresentationMapper = messageRepresentationMapper;
     }
 
     @ResponseBody
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Message> getMessages() {
-        return messageService.getMessages();
+    public MessagesRepresentation getMessages() {
+        return messageRepresentationMapper.toRepresentation(messageService.getMessages());
     }
 
     @ResponseBody
     @GetMapping(value = "/{id}/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Message getMessage(@PathVariable("id") Long id) {
-        return messageService.getMessage(id).orElseThrow(() -> new EntityNotFoundException(String.format("Message with id %d not found", id)));
+    public MessageRepresentation getMessage(@PathVariable("id") Long id) {
+        return messageRepresentationMapper.toRepresentation(messageService.getMessage(id).orElseThrow(() ->
+                new EntityNotFoundException(String.format("Message with id %d not found", id))));
     }
 
     @ResponseBody

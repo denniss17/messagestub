@@ -1,5 +1,6 @@
 package nl.dennisschroer.messagestub.exchange.ggk.action;
 
+import nl.dennisschroer.messagestub.MarshallUtil;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessageService;
 import nl.dennisschroer.messagestub.exchange.MessageDirection;
@@ -13,6 +14,7 @@ import nl.stufstandaarden.koppelvlak.ggk0210.BinaireInhoudBasisGgkberichten;
 import nl.stufstandaarden.koppelvlak.ggk0210.EnvelopHeenberichtGgkDi01;
 import nl.stufstandaarden.koppelvlak.ggk0210.ObjectFactory;
 
+import javax.xml.bind.JAXBException;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.UUID;
@@ -43,7 +45,7 @@ public abstract class AbstractGenerateDi01MessageAction implements MessageAction
     }
 
     @Override
-    public MessageActionResult execute(Message message) {
+    public MessageActionResult execute(Message message) throws JAXBException {
         EnvelopHeenberichtGgkDi01 di01 = ggkObjectFactory.createEnvelopHeenberichtGgkDi01();
 
         di01.setStuurgegevens(stufObjectFactory.createStuurgegevensDi01EnvelopHeenbericht());
@@ -62,6 +64,8 @@ public abstract class AbstractGenerateDi01MessageAction implements MessageAction
         di01.getParameters().setBericht(createBericht(message));
 
         ExchangeMessage exchangeMessage = new ExchangeMessage("Di01", message.getType(), MessageDirection.OUT);
+        exchangeMessage.setBody(MarshallUtil.marshall(di01));
+        exchangeMessage.setMessage(message);
         exchangeMessage = exchangeMessageService.saveExchangeMessage(exchangeMessage);
 
         MessageActionResult result = new MessageActionResult();

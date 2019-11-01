@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MessageActionServiceImpl implements MessageActionService {
@@ -20,5 +21,12 @@ public class MessageActionServiceImpl implements MessageActionService {
                 .filter(action -> action.getName().equals(actionName))
                 .filter(action -> action.isApplicableToMessageType(messageType))
                 .findFirst();
+    }
+
+    @Override
+    public List<MessageAction> getActionsForMessageType(String messageType) {
+        return messageActions.stream()
+                .filter(action -> action.isApplicableToMessageType(messageType))
+                .collect(Collectors.toList());
     }
 }

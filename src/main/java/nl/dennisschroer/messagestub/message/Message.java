@@ -1,11 +1,11 @@
 package nl.dennisschroer.messagestub.message;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
-import nl.dennisschroer.messagestub.exchange.MessageDirection;
 import nl.dennisschroer.messagestub.message.event.NewMessageEvent;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -63,20 +63,13 @@ public class Message {
      * Dit kan gebruikt worden om het ontvangen bericht te relateren aan het bericht van de exchange, bijvoorbeeld
      * een WMO301 bericht aan de GGK Di01 waarin deze zat.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "message")
     private List<ExchangeMessage> exchangeMessages;
 
     public Message(String type, String body) {
         this.type = type;
         this.body = body;
-    }
-
-    @Nullable
-    public ExchangeMessage getIncomingExchangeMessage() {
-        if (exchangeMessages != null) {
-            return exchangeMessages.stream().filter(exchangeMessage -> exchangeMessage.getDirection().equals(MessageDirection.IN)).findFirst().orElse(null);
-        }
-        return null;
     }
 
     @Data

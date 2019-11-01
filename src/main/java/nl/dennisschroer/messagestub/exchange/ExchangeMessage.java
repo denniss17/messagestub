@@ -1,5 +1,6 @@
 package nl.dennisschroer.messagestub.exchange;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -69,12 +70,14 @@ public class ExchangeMessage {
     /**
      * Als dit bericht een request is: de teruggekomen response.
      */
+    @JsonIgnore
     @ManyToOne
     private ExchangeMessage responseMessage;
 
     /**
      * Het bericht wat zich in deze exchange message bevind, als dit bericht een wrapper is voor een ander bericht.
      */
+    @JsonIgnore
     @Nullable
     @ManyToOne
     private Message message;
