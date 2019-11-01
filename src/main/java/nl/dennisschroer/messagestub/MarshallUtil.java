@@ -5,7 +5,9 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.namespace.QName;
 import javax.xml.transform.Result;
+import javax.xml.transform.Source;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -48,5 +50,20 @@ public class MarshallUtil {
     public static Unmarshaller unmarshaller(Class<?> type) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(type.getPackage().getName());
         return jaxbContext.createUnmarshaller();
+    }
+
+    /**
+     * Haal uit een {@link Source} de XML van het onderliggende bericht.
+     */
+    public static String getXmlFromSource(Source source, QName name) throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(name.getNamespaceURI());
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        Object object = unmarshaller.unmarshal(source);
+
+        Marshaller marshaller = jaxbContext.createMarshaller();
+        StringWriter writer = new StringWriter();
+        marshaller.marshal(object, writer);
+
+        return writer.toString();
     }
 }
