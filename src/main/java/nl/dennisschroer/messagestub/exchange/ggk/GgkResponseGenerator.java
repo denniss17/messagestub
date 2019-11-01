@@ -8,6 +8,9 @@ import nl.stufstandaarden.koppelvlak.ggk0210.EnvelopHeenberichtGgkDi01;
 import nl.stufstandaarden.koppelvlak.ggk0210.EnvelopRetourberichtGgkDu01;
 import org.springframework.lang.Nullable;
 
+/**
+ * Generator voor GGK-berichten die een antwoord zijn op een inkomend bericht.
+ */
 public interface GgkResponseGenerator {
     /**
      * Genereer een automatische response op een Di01.

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import nl.dennisschroer.messagestub.exchange.ExchangeMessage;
+import nl.dennisschroer.messagestub.exchange.MessageDirection;
 import nl.dennisschroer.messagestub.message.event.NewMessageEvent;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,13 +18,14 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
-@ToString(exclude = "exchangeMessage")
+@ToString(exclude = "incomingExchangeMessage")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class)
 public class Message {
@@ -56,22 +58,25 @@ public class Message {
     private String body;
 
     /**
-     * De message van de exchange (bijv. GGK) waarin dit bericht zat.
+     * Exchangemessages waarin dit bericht zich bevindt.
      * <p>
      * Dit kan gebruikt worden om het ontvangen bericht te relateren aan het bericht van de exchange, bijvoorbeeld
      * een WMO301 bericht aan de GGK Di01 waarin deze zat.
      */
-    @ManyToOne
-    private ExchangeMessage incomingExchangeMessage;
+    @OneToMany(mappedBy = "message")
+    private List<ExchangeMessage> exchangeMessages;
 
     public Message(String type, String body) {
         this.type = type;
         this.body = body;
     }
 
-    public Message(String type, String body, ExchangeMessage incomingExchangeMessage) {
-        this(type, body);
-        this.incomingExchangeMessage = incomingExchangeMessage;
+    @Nullable
+    public ExchangeMessage getIncomingExchangeMessage() {
+        if (exchangeMessages != null) {
+            return exchangeMessages.stream().filter(exchangeMessage -> exchangeMessage.getDirection().equals(MessageDirection.IN)).findFirst().orElse(null);
+        }
+        return null;
     }
 
     @Data
@@ -79,10 +84,19 @@ public class Message {
     public static class MessageMeta {
         @Nullable
         private String bsn;
+
         @Nullable
         private String agbCode;
+
+        @Nullable
+        private String gemeenteCode;
+
+        @Nullable
+        private String applicatieNaam;
+
         @Nullable
         private Integer beschikkingsnummer;
+
         @Nullable
         private String conversatieId;
 

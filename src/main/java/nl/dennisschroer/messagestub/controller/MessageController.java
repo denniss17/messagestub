@@ -23,6 +23,7 @@ import java.util.List;
 @RequestMapping("/api/messages")
 public class MessageController {
     private final MessageService messageService;
+
     private final MessageActionService messageActionService;
 
     public MessageController(MessageService messageService, MessageActionService messageActionService) {
@@ -46,19 +47,12 @@ public class MessageController {
     @GetMapping(value = "/{id}/action/{actionName}", produces = MediaType.APPLICATION_JSON_VALUE)
     public MessageActionResult executeAction(@PathVariable("id") Long id, @PathVariable("actionName") String actionName) {
         Message message = messageService.getMessage(id).orElseThrow(() -> new EntityNotFoundException(String.format("Message with id %d not found", id)));
-        MessageAction messageAction = messageActionService.getAction(actionName).orElseThrow(() -> new EntityNotFoundException(String.format("MessageAction with name %s not found", actionName)));
-
-        // Check if the action is applicable on the message
-        if (!messageAction.getApplicableMessageTypes().contains(message.getType())) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST,
-                    String.format("Action %s not applicable on message of type %s. Applicable types: [%s]",
-                            messageAction.getName(), message.getType(), String.join(",", messageAction.getApplicableMessageTypes())
-                    ));
-        }
+        MessageAction messageAction = messageActionService.getAction(actionName, message.getType()).orElseThrow(() ->
+                new EntityNotFoundException(String.format("No MessageAction with name %s found which is applicable to type %s", actionName, message.getType())));
 
         try {
-            log.info(String.format("Executing action %s on message %d of type %s", messageAction.getName(), message.getId(), message.getType()));
+            log.info(String.format("Executing action %s (%s) on message %d of type %s",
+                    messageAction.getName(), messageAction.getClass().getSimpleName(), message.getId(), message.getType()));
             return messageAction.execute(message);
         } catch (Exception e) {
             log.error("Error while executing action " + messageAction.getName(), e);

@@ -15,7 +15,10 @@ public class MessageActionServiceImpl implements MessageActionService {
     }
 
     @Override
-    public Optional<MessageAction> getAction(String actionName) {
-        return messageActions.stream().filter(action -> action.getName().equals(actionName)).findFirst();
+    public Optional<MessageAction> getAction(String actionName, String messageType) {
+        return messageActions.stream()
+                .filter(action -> action.getName().equals(actionName))
+                .filter(action -> action.isApplicableToMessageType(messageType))
+                .findFirst();
     }
 }

@@ -3,8 +3,10 @@ package nl.dennisschroer.messagestub.exchange;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nl.dennisschroer.messagestub.message.Message;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +27,8 @@ import java.util.Date;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class)
 public class ExchangeMessage {
+    public static final String TYPE = "exchangeMessage";
+
     @Id
     @GeneratedValue
     private Long id;
@@ -67,6 +71,13 @@ public class ExchangeMessage {
      */
     @ManyToOne
     private ExchangeMessage responseMessage;
+
+    /**
+     * Het bericht wat zich in deze exchange message bevind, als dit bericht een wrapper is voor een ander bericht.
+     */
+    @Nullable
+    @ManyToOne
+    private Message message;
 
     @CreatedDate
     private Date timestamp;

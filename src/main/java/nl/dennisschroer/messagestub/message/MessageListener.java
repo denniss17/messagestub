@@ -21,7 +21,7 @@ public class MessageListener {
     public void onMessageReceived(NewMessageEvent event) {
         messageService.saveMessage(event.getMessage());
         if (event instanceof MessageReceivedEvent) {
-            log.info("Message received via " + event.getMessage().getIncomingExchangeMessage().getExchangeType() + ": " + event.getMessage().toString());
+            log.info("Message received: " + event.getMessage().toString());
         } else {
             log.info("Message generated: " + event.getMessage().toString());
         }

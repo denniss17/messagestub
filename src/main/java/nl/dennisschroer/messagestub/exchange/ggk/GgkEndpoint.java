@@ -53,9 +53,14 @@ public class GgkEndpoint {
             log.info("GGK: Di01 ontvangen: " + exchangeMessage.toString());
 
             // Publish message
-            Message message = new Message(bepaalMessageType(bericht), bepaalMessageBody(bericht), exchangeMessage);
+            Message message = new Message(bepaalMessageType(bericht), bepaalMessageBody(bericht));
             message.getMeta().setConversatieId(bericht.getStuurgegevens().getReferentienummer());
+            message.getMeta().setApplicatieNaam(bericht.getStuurgegevens().getZender().getApplicatie());
             eventPublisher.publishEvent(new MessageReceivedEvent(message));
+
+            // Link message
+            exchangeMessage.setMessage(message);
+            exchangeMessageService.saveExchangeMessage(exchangeMessage);
 
             // Create response
             Bv03Bericht response = ggkResponseGenerator.generateResponse(bericht);
@@ -80,9 +85,14 @@ public class GgkEndpoint {
             log.info("GGK: Du01 ontvangen: " + exchangeMessage.toString());
 
             // Publish message
-            Message message = new Message(bepaalMessageType(retourBericht), bepaalMessageBody(retourBericht), exchangeMessage);
+            Message message = new Message(bepaalMessageType(retourBericht), bepaalMessageBody(retourBericht));
             message.getMeta().setConversatieId(retourBericht.getStuurgegevens().getReferentienummer());
+            message.getMeta().setApplicatieNaam(retourBericht.getStuurgegevens().getZender().getApplicatie());
             eventPublisher.publishEvent(new MessageReceivedEvent(message));
+
+            // Link message
+            exchangeMessage.setMessage(message);
+            exchangeMessageService.saveExchangeMessage(exchangeMessage);
 
             // Create response
             Bv03Bericht response = ggkResponseGenerator.generateResponse(retourBericht);
